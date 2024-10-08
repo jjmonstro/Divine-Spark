@@ -1,32 +1,23 @@
-import mssql from 'mssql';
+import mssql from "mssql"
+import dotenv from "dotenv"
 
-const sqlServerConfig = {
-  user: 'sa',
-  password: '*123456HAS*',
-  database: 'Jogo',
+dotenv.config();
+const sqlConfig = {
+  user: process.env.DB_USER,
+  password: process.env.DB_PWD,
+  database: process.env.DB_NAME,
   server: 'localhost',
-  port: 1433,
   pool: {
     max: 10,
     min: 0,
     idleTimeoutMillis: 30000
   },
   options: {
+    encrypt: false, // for azure
     trustServerCertificate: true // change to true for local dev / self-signed certs
   }
 }
 
-//tentativa de conserto
-export const connect = async () => {
-  try {
-      const connection = await mysql.createConnection(sqlServerConfig);
-      console.log('Connected to MySQL');
-      return connection; // Return the connection object
-  } catch (error) {
-      console.error('Error connecting to MySQL:', error);
-      throw error; // Rethrow the error to be handled elsewhere
-  }
-};
+const connection = await mssql.connect(sqlConfig);
 
-
-export default mssql.connect(sqlServerConfig);
+export default connection;

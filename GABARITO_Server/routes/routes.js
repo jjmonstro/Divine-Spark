@@ -1,5 +1,4 @@
 import { Router } from "express";
-import { getCarros, getCarroById, createCarro } from "../controller/carrosController.js";
 import { getArma, getArmaById } from "../controller/armaController.js";
 import { getBau, getBauById } from "../controller/bauController.js";
 import { getMonstro, getMonstroById } from "../controller/monstroController.js";
@@ -8,26 +7,24 @@ import { getPocao, getPocaoById } from "../controller/pocaoController.js";
 import { getSala, getSalaById } from "../controller/salaController.js";
 const router = Router();
 
-router.get('/carros', getCarros )
-router.get('/carros/:id', getCarroById )
-router.post('/carros', createCarro )
 
-router.get('/arma', getArma)
-router.get('/arma/:id', getArmaById)
 
-router.get('/bau', getBau)
-router.get('/bau/:id', getBauById)
+router.get('/Arma', getArma)
+router.get('/Arma/:id', getArmaById)
 
-router.get('/monstro', getMonstro)
-router.get('/monstro/:id', getMonstroById)
+router.get('/Bau', getBau)
+router.get('/Bau/:id', getBauById)
 
-router.get('/personagem', getPersonagem)
-router.get('/personagem/:id', getPersonagemById)
+router.get('/Monstro', getMonstro)
+router.get('/Monstro/:id', getMonstroById)
 
-router.get('/pocao', getPocao)
-router.get('/pocao/:id', getPocaoById)
+router.get('/Personagem', getPersonagem)
+router.get('/Personagem/:id', getPersonagemById)
 
-router.get('/sala', getSala)
-router.get('/sala/:id', getSalaById)
+router.get('/Pocao', getPocao)
+router.get('/Pocao/:id', getPocaoById)
+
+router.get('/Sala', getSala)
+router.get('/Sala/:id', getSalaById)
 
 export default router;
