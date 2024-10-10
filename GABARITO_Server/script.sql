@@ -149,3 +149,20 @@ INSERT INTO Sala (ID,monstro_ID,bau_id) VALUES (14, 0, 14)
 INSERT INTO Sala (ID,monstro_ID,bau_id) VALUES (15, 0, 15)
 --aqui comçam as salas de monstro (os monstros ainda não foram criados)
 INSERT INTO Sala (ID,monstro_ID,bau_id) VALUES (16, 1, 0)
+
+
+Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade) values (1, 'Górgona', 10, 10, 5, 10)
+Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade) values (2, 'Laelaps', 15, 15, 7, 6)
+Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade) values (3, 'Minerva', 20, 20, 6, 12)
+Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade) values (4, 'Gigante', 10, 10, 7, 2)
+Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade) values (5, 'Polifemo', 15, 15, 7, 4)
+Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade) values (6, 'Netuno', 25, 25, 10, 10)
+Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade) values (7, 'Empousa', 10, 10, 4, 6)
+Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade) values (8, 'Cerbero', 15, 15, 7, 4 )
+Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade) values (9, 'Plutão', 25, 25, 10, 14)
+Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade) values (10, 'Gegenes', 10, 10, 5, 7)
+Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade) values (11, 'Hidra', 10,10,6,8)
+Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade) values (12, 'Quimera', 10,10,8,7)
+Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade) values (13, 'Jupiter', 25, 25, 15, 10)
+
+select * from Monstro
