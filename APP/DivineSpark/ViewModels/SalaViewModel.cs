@@ -26,26 +26,35 @@ namespace DivineSpark.ViewModels
         public string image = "salaf.png";
 
         [ObservableProperty]
-        public bool podeEsquerda = false;
+        public bool podeEsquerda = true;
 
         [ObservableProperty]
         public bool podeFrente = true;
 
         [ObservableProperty]
-        public bool podeDireita = false;
+        public bool podeDireita = true;
+
+        [ObservableProperty]
+        public bool podeVolta = false;
 
         SalaService salaService;
+        MonstroService monstroService;
+        BauService bauService;
 
-        public ICommand GerarSalaCommand { get; }
+        //mais coisa da geração procedural
+        /*public ICommand GerarSalaCommand { get; }
         public ImageSource ImageSource { get; private set; }
-
+*/      
+        public ICommand FrenteButton1Command { get; set; }
         public SalaViewModel()
         {
-             GerarSalaCommand = new Command(GerarSala);
-             salaService= new SalaService();    
+             //GerarSalaCommand = new Command(GerarSala);
+             salaService= new SalaService();
+            FrenteButton1Command = new Command(FrenteButton1);
         }
 
-        public async void GerarSala()
+        //isso aqui foi o delirio do geramento de sala procedural
+        /*public async void GerarSala()
         {
             int contagemSala = 0; //quando chegar a um certo número de salas aparece o boss
             
@@ -107,11 +116,16 @@ namespace DivineSpark.ViewModels
                     Image = "salaef.png";
                     ImageSource = ImageSource.FromFile("salaef.png");
                     break;
+            }*/
+
+            public async void FrenteButton1()
+            {
+                Image = "saladf.png";
+                PodeDireita = true;
             }
 
-            //atualizando os botões na tela
-            
+
 
         }
     }
-}
+

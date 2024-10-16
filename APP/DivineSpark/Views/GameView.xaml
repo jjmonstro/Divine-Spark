@@ -4,18 +4,44 @@
              x:Class="DivineSpark.Views.GameView"
              Shell.NavBarIsVisible="False">
     
-    <Grid ColumnDefinitions="*,*,*" ColumnSpacing="50" RowSpacing="25" Margin="0" Padding="0">
+    <Grid Margin="0" Padding="0">
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Image Aspect="AspectFill" Source="{Binding Image}" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="3"/>
 
+        <Image Grid.Row="0" Source="{Binding Image}" Aspect="AspectFill"/>
+
+        <Grid Grid.Row="0" Grid.Column="1">
+            <!--coissas que vão ficar em cima da imagem de fundo, tipo bau e monstor -->
+            <Label Text="teste" Grid.Row="0" Grid.Column="0" />
+        </Grid>
+
+
+        <Grid Grid.Row="1" ColumnSpacing="50" RowSpacing="25" Margin="0" Padding="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Button x:Name="FrenteButton" Text="botão pra frente" Grid.Row="1" Grid.Column="1" IsVisible="{Binding PodeFrente}" Command="{Binding FrenteButton1Command}"/>
+        <Button x:Name="VoltaButton" Text="botão para traseira" Grid.Row="3" Grid.Column="1" IsVisible="{Binding PodeVolta}"/>
+        <Button x:Name="EsquerdaButton" Text="botão para esquerda" Grid.Row="2" Grid.Column="0" IsVisible="{Binding PodeEsquerda}"/>
+        <Button x:Name="DireitaButton" Text="botão direita" Grid.Row="2" Grid.Column="2" IsVisible="{Binding PodeDireita}" /> 
+            
+        </Grid>
+
+    </Grid>
+</ContentPage>
+    
+    <!--coisa da geração procedural
         <Button x:Name="FrenteButton" Text="gerar sala (seria o botao frente)" Grid.Row="1" Grid.Column="1" IsVisible="{Binding PodeFrente}" Command="{Binding GerarSalaCommand}"/>
         <Button x:Name="VoltaButton" Text="voltar sala" Grid.Row="2" Grid.Column="1" IsVisible="False"/>
         <Button x:Name="EsquerdaButton" Text="Botão na parte inferior4()" Grid.Row="2" Grid.Column="0" IsVisible="{Binding PodeEsquerda}" Command="{Binding GerarSalaCommand}"/>
-        <Button x:Name="DireitaButton" Text="Botão na parte inferior6()" Grid.Row="2" Grid.Column="2" IsVisible="{Binding PodeDireita}" Command="{Binding GerarSalaCommand}"/>
-    </Grid>
-</ContentPage>
+        <Button x:Name="DireitaButton" Text="Botão na parte inferior6()" Grid.Row="2" Grid.Column="2" IsVisible="{Binding PodeDireita}" Command="{Binding GerarSalaCommand}"/>-->
