@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -19,6 +20,7 @@ namespace DivineSpark.Services
 
         public SalaService()
         {
+         
             httpClient = new HttpClient();
             jsonSerializerOptions = new JsonSerializerOptions
             {
@@ -53,7 +55,7 @@ namespace DivineSpark.Services
 
         public async Task<Sala> GetSalaByIdAsync(int id) // TASK: usado no await
         {
-            
+            Debug.WriteLine("Chamou!! o GetSalaByIdAsync");
             Sala sala = new Sala();
             try
             {
@@ -61,20 +63,28 @@ namespace DivineSpark.Services
                 if (response.IsSuccessStatusCode)
                 {
                     string content = await response.Content.ReadAsStringAsync();// tranforma o conteudo em string;
+
+                    Debug.WriteLine($"Resposta JSON: {content}");
+
                     sala = JsonSerializer.Deserialize<Sala>(content, jsonSerializerOptions);
                 }
                 else
                 {
                     // se der erro na chama da API mostra
-                    Console.WriteLine($"Erro na chamada à API: {response.StatusCode}");
+                    Debug.WriteLine($"Erro na chamada à API: {response.StatusCode}");
                 }
+            }
+            catch (JsonException ex)
+            {
+                // se der alguma exeption ai mostra
+                Debug.WriteLine($"Exceção ocorrida: {ex.Message}");
             }
             catch (Exception ex)
             {
                 // se der alguma exeption ai mostra
-                Console.WriteLine($"Exceção ocorrida: {ex.Message}");
+                Debug.WriteLine($"Exceção ocorrida: {ex.Message}");
             }
-            Console.WriteLine($"Sala encontrada: ID={sala.Id}");
+            Debug.WriteLine($"Sala encontrada: ID={sala.Id}");
             return sala;
         }
 

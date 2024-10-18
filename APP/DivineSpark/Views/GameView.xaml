@@ -2,19 +2,28 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DivineSpark.Views.GameView"
+             xmlns:local="clr-namespace:DivineSpark.ViewModels"
              Shell.NavBarIsVisible="False">
+    <!--aqui eu fiz o binding direto nesse arquivo pra ver se fazia diferença-->
+    <ContentPage.BindingContext>
+        <local:SalaViewModel />
+    </ContentPage.BindingContext>
     
     <Grid Margin="0" Padding="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Image Grid.Row="0" Source="{Binding Image}" Aspect="AspectFill"/>
+        <!--<Image Grid.Row="0" Source="{Binding Image}" Aspect="AspectFill"/>-->
 
-        <Grid Grid.Row="0" Grid.Column="1">
-            <!--coissas que vão ficar em cima da imagem de fundo, tipo bau e monstor -->
-            <Label Text="teste" Grid.Row="0" Grid.Column="0" />
+        <Grid Grid.Row="0" >
+            <!--coissas que vão ficar em cima da imagem de fundo, tipo bau e monstro ficarão aqui -->
+            <Image Aspect="AspectFill" Source="{Binding Image}" Grid.ColumnSpan="1" Grid.RowSpan="2"/>
+            <Image Source="logo.webp" Grid.Row="0" Grid.Column="1" IsVisible="{Binding LogoVisible}"/>
         </Grid>
 
 
@@ -30,17 +39,25 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Button x:Name="FrenteButton" Text="botão pra frente" Grid.Row="1" Grid.Column="1" IsVisible="{Binding PodeFrente}" Command="{Binding FrenteButton1Command}"/>
-        <Button x:Name="VoltaButton" Text="botão para traseira" Grid.Row="3" Grid.Column="1" IsVisible="{Binding PodeVolta}"/>
-        <Button x:Name="EsquerdaButton" Text="botão para esquerda" Grid.Row="2" Grid.Column="0" IsVisible="{Binding PodeEsquerda}"/>
-        <Button x:Name="DireitaButton" Text="botão direita" Grid.Row="2" Grid.Column="2" IsVisible="{Binding PodeDireita}" /> 
-            
+            <!--                                                                       | com o command não estava nem chamando o comando atualizaSala
+            <Button x:Name="JogarButton" Text="Jogar" Grid.Row="0" Grid.Column="1" Command="{Binding AtualizaSalaCommand}" CommandParameter="1" IsVisible="{Binding JogarVisible}" IsEnabled="True"/>
+            !!!!!!!!!!!!!
+            O botão está funcionando, da para ver pelo console, porém, os bindings não estão sendo atualizados, tentei resolver mas não consegui
+            !!!!!!!!!!!!!-->
+            <Button x:Name="JogarButton" Text="Jogar" Grid.Row="0" Grid.Column="1" Clicked="OnJogarClicked" IsVisible="{Binding JogarVisible}" IsEnabled="True"/>
+            <Button x:Name="CreditosButton" Text="Créditos" Grid.Row="1" Grid.Column="1" Command="{Binding AtualizaSalaCommand}" IsVisible="{Binding CreditosVisible}"/>
+
+            <Button x:Name="FrenteButton" Text="botão pra frente" Grid.Row="0" Grid.Column="1" IsVisible="{Binding PodeFrente}" Command="{Binding FrenteButtonCommand}"/>
+            <Button x:Name="VoltaButton" Text="botão para traseira" Grid.Row="1" Grid.Column="1" IsVisible="{Binding PodeTras}" Command="{Binding TrasButtonCommand}"/>
+            <Button x:Name="EsquerdaButton" Text="botão para esquerda" Grid.Row="1" Grid.Column="0" IsVisible="{Binding PodeEsquerda}" Command="{Binding EsquerdaButtonCommand}"/>
+            <Button x:Name="DireitaButton" Text="botão direita" Grid.Row="1" Grid.Column="2" IsVisible="{Binding PodeDireita}" Command="{Binding DireitaButtonCommand}"/>
+
         </Grid>
 
     </Grid>
 </ContentPage>
-    
-    <!--coisa da geração procedural
+
+<!--coisa da geração procedural
         <Button x:Name="FrenteButton" Text="gerar sala (seria o botao frente)" Grid.Row="1" Grid.Column="1" IsVisible="{Binding PodeFrente}" Command="{Binding GerarSalaCommand}"/>
         <Button x:Name="VoltaButton" Text="voltar sala" Grid.Row="2" Grid.Column="1" IsVisible="False"/>
         <Button x:Name="EsquerdaButton" Text="Botão na parte inferior4()" Grid.Row="2" Grid.Column="0" IsVisible="{Binding PodeEsquerda}" Command="{Binding GerarSalaCommand}"/>

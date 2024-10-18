@@ -48,7 +48,12 @@ CREATE TABLE Sala (
     monstro_ID INT FOREIGN KEY
     REFERENCES Monstro(ID),
     bau_id INT FOREIGN KEY
-    REFERENCES Bau(ID)
+    REFERENCES Bau(ID),
+    esquerda INT,
+    direita INT,
+    frente INT,
+    tras INT,
+    imagem VARCHAR(50)
 );
 
 CREATE TABLE Personagem (
@@ -128,6 +133,7 @@ INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (12, 0, 3)
 INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (13, 0, 4)
 INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (14, 0, 5)
 INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (15, 0, 6)
+INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (16, 0, 6)
 INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (0, null, null)
 
 INSERT INTO Monstro (ID,nome,vidaMax,vidaAtual,forca,agilidade) VALUES (0,Null,Null,Null,Null,Null)
@@ -146,20 +152,30 @@ Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade) values (12,
 Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade) values (13, 'Jupiter', 25, 25, 15, 10)
 INSERT INTO Monstro (ID,nome,vidaMax,vidaAtual,forca,agilidade) VALUES (14, 'Correx', 100, 100, 100, 100)
 
-INSERT INTO Sala (ID,monstro_ID,bau_id) VALUES (1, 0, 1)
-INSERT INTO Sala (ID,monstro_ID,bau_id) VALUES (2, 0, 2)
-INSERT INTO Sala (ID,monstro_ID,bau_id) VALUES (3, 0, 3)
-INSERT INTO Sala (ID,monstro_ID,bau_id) VALUES (4, 0, 4)
-INSERT INTO Sala (ID,monstro_ID,bau_id) VALUES (5, 0, 5)
-INSERT INTO Sala (ID,monstro_ID,bau_id) VALUES (6, 0, 6)
-INSERT INTO Sala (ID,monstro_ID,bau_id) VALUES (7, 0, 7)
-INSERT INTO Sala (ID,monstro_ID,bau_id) VALUES (8, 0, 8)
-INSERT INTO Sala (ID,monstro_ID,bau_id) VALUES (9, 0, 9)
-INSERT INTO Sala (ID,monstro_ID,bau_id) VALUES (10, 0, 10)
-INSERT INTO Sala (ID,monstro_ID,bau_id) VALUES (11, 0, 11)
-INSERT INTO Sala (ID,monstro_ID,bau_id) VALUES (12, 0, 12)
-INSERT INTO Sala (ID,monstro_ID,bau_id) VALUES (13, 0, 13)
-INSERT INTO Sala (ID,monstro_ID,bau_id) VALUES (14, 0, 14)
-INSERT INTO Sala (ID,monstro_ID,bau_id) VALUES (15, 0, 15)
---aqui comçam as salas de monstro (os monstros ainda não foram criados)
-INSERT INTO Sala (ID,monstro_ID,bau_id) VALUES (16, 1, 0)
+-- salad.png  vai só para diretia
+-- saladf.png   vai para direita e frent
+-- salae.png   vai para esquerda
+-- salaed.png   é só olhar a terminação
+-- salaedf.png
+-- salaef.png
+-- salaf.png
+-- salan.png   não vai para lugar nenhum, só volta bb
+
+
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (1, null, null, null, null, 2, null, 'salaf.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (2, null, null, 3, 9, null, 1, 'salaed.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (3, null, null, null, null, 4, 2, 'salaf.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (4, null, 11, null, 5, null, 3, 'salad.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (5, null, null, null, null, 6, 4, 'salaf.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (6, 1, null, null, 7, 8, 5, 'saladf.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (7, null, 13, null, null, null, 6, 'salan.png') --salan sera uma sala sem nd, só vai dar para andar para trás
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (8, null, 9, null, null, null, 6, 'salan.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (9, 1, null, 11, null, 10, 2, 'salaed.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (10, null, 2, null, null, null, 9, 'salan.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (11, null, null, null, null, 12, 9, 'salaf.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (12, null, null, 13, null, null, 11, 'salae.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (13, null, null, null, 14, null, 12, 'salad.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (14, null, 14, null, null, 15, 13, 'salaf.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (15, 13, null, null, null, null, 14, 'salan.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (16, 1, null, null, null, null, 5, 'salan.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (17, 12, 0, null, null, null, 13, 'salan.png')

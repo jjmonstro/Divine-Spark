@@ -16,7 +16,7 @@ async function getPocao(req,res){
   async function getPocaoById(req,res) {
     try{
       let result = await connection.query(`SELECT * FROM ${tableName} WHERE ID = ${req.params.id};`);
-      res.send(result.recordset);
+      res.send(result.recordset[0]);
       console.table(result.recordset);
       }
       catch(ex){
