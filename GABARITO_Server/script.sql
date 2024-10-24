@@ -64,8 +64,8 @@ CREATE TABLE Personagem (
     forca INT,
     agilidade INT,
     nivel INT,
-    posicao INT FOREIGN KEY
-    REFERENCES Sala(ID)
+	imagem VARCHAR(50)
+
     --mana INT, é uma ideia boa mas por enquanto acho mais fácil tirar
 );
 -- por enquanto a questão da experiência não esta adicionada, vamos focar em fazer funcionar
@@ -179,3 +179,7 @@ INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALU
 INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (15, 13, null, null, null, null, 14, 'salan.png')
 INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (16, 1, null, null, null, null, 5, 'salan.png')
 INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (17, 12, 0, null, null, null, 13, 'salan.png')
+
+INSERT INTO Personagem(ID, nome, forca,agilidade, nivel, vidaAtual, vidaMax, imagem) VALUES(1, 'Eneias', 5, 2, 1, 3, 3, 'p1.png')
+INSERT INTO Personagem(ID, nome, forca,agilidade, nivel, vidaAtual, vidaMax, imagem) VALUES(2, 'Réia', 2, 3, 1, 5, 5, 'p2.png')
+INSERT INTO Personagem(ID, nome, forca,agilidade, nivel, vidaAtual, vidaMax, imagem) VALUES(3, 'Jasão', 3,5, 1, 2, 2, 'p3.png')
