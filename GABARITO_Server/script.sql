@@ -13,12 +13,6 @@ drop table Arma
 drop table Bau
 Drop table Sala
 
-ALTER TABLE Arma
-ADD imagem VARCHAR(50);
-
--- Alterar a coluna "possui" do tipo BIT para INT
-ALTER TABLE Arma
-ALTER COLUMN possui INT;
 
 DELETE FROM Arma
 DELETE FROM Bau
