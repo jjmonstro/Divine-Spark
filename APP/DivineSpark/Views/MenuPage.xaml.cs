@@ -11,6 +11,7 @@ public partial class MenuPage : ContentPage
     }
     private async void JogarBtnClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new EscolhaPage());
+        //aqui eu to fazendo o teste levando direto para o inventário, o correto é EscolhaPage
+        await Navigation.PushAsync(new InventarioView());
     }
 }

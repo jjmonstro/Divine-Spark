@@ -60,6 +60,9 @@ namespace DivineSpark.ViewModels
         [ObservableProperty]
         public string image2;
 
+        [ObservableProperty]
+        public bool jogarDNV = false;
+
         /*        [ObservableProperty]
                 public bool logoVisible = true;
 
@@ -82,7 +85,7 @@ namespace DivineSpark.ViewModels
         public ICommand FrenteButtonCommand { get; set; }
         public ICommand TrasButtonCommand { get; set; }
         public ICommand AtacarCommand { get; set; }
-
+        public ICommand JogarNovamenteCommand { get; set; }
         public SalaViewModel(PersonagemViewModel personagemViewModel)
         {
             //GerarSalaCommand = new Command(GerarSala);
@@ -96,6 +99,7 @@ namespace DivineSpark.ViewModels
             FrenteButtonCommand = new Command(FrenteButton);
             TrasButtonCommand = new Command(TrasButton);
             AtacarCommand = new Command(Atacar);
+            JogarNovamenteCommand = new Command(JogarNovamente);
             this.personagemViewModel = personagemViewModel;
         }
 
@@ -179,14 +183,18 @@ namespace DivineSpark.ViewModels
             Monstro monstro = await monstroService.GetMonstroByIdAsync((int)MonstroId);
             Image2 = monstro.Image;
         }
-        
+
+        private int vidaMonstro;
         public async void Atacar()
         {
             Debug.WriteLine("Atacou!!");
-            //TODAS AS VEZES QUE RODA ELE RECOLOCA OS VALORES NA VARIAVEIS ENTÃO ACABA QUE A VIDA DO MONSTRO NÃO DIMINUI, TEM QUE ARRUMAR A LÓGICA 
-            //tem que pegar a vida max uma só vez e cada vez que tirar um dano tu guarda esse valor em outra variavel
             Monstro monstro = await monstroService.GetMonstroByIdAsync((int)MonstroId);
-            int vidaMonstro = monstro.VidaMax;
+            if (vidaMonstro == 0)
+            {
+                
+                vidaMonstro = monstro.VidaMax;
+            }
+
 
             int idArma = personagemViewModel.Equipamento;
             Debug.WriteLine($"personagem.equipamento: {personagemViewModel.Equipamento}     idarma: {idArma}");
@@ -196,12 +204,40 @@ namespace DivineSpark.ViewModels
             int forcaPersonagem = personagemViewModel.Forca;
             vidaMonstro = vidaMonstro - forcaArma*forcaPersonagem;
 
-            Debug.WriteLine($"força da arma: {forcaArma}     froça personagem: {forcaPersonagem}    ");
-            Debug.WriteLine($"vidaAtualMonstro: {vidaMonstro}");
+/*            Debug.WriteLine($"força da arma: {forcaArma}     froça personagem: {forcaPersonagem}    ");
+            Debug.WriteLine($"vidaAtualMonstro: {vidaMonstro}");*/
+
+            //fazendo o personagem perder vida
+
+            personagemViewModel.vidaAtual= personagemViewModel.vidaAtual - monstro.Forca;
+/*            Debug.WriteLine($"monstro.Forca{monstro.Forca}---VIDA PERSONAGEM--{vidaPersonagem}---personagemViewModel.vidaAtual{personagemViewModel.vidaAtual}");
+*/            if(personagemViewModel.vidaAtual <= 0)
+            {
+                Image2 = "perdeu.png";
+                PodeEsquerda = false;
+                PodeDireita = false;
+                PodeFrente = false;
+                PodeTras = false;
+                AtacarButton = false;
+                JogarDNV = true;
+            }
             if (vidaMonstro <= 0)
             {
                 FinalizarBatlha();
+                vidaMonstro = 0;
             }
+        }
+
+        public void JogarNovamente()
+        {
+            // Obter o nome do arquivo atual
+            var fileName = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
+
+            // Iniciar uma nova instância do processo
+            System.Diagnostics.Process.Start(fileName);
+            
+            // Encerrar a instância atual
+            Environment.Exit(0);
         }
 
         private async void FinalizarBatlha()
@@ -209,6 +245,8 @@ namespace DivineSpark.ViewModels
             AtualizaBotoes(await salaService.GetSalaByIdAsync(Id));
             Image2 = null;
         }
+
+
     }
 }
 

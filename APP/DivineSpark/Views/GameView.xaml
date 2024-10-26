@@ -18,6 +18,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
+        <!-- imagem da sala tá aqui-->
         <Image Grid.Row="0" Source="{Binding Image}" Aspect="AspectFit" />
 
         <Grid Grid.Row="0" >
@@ -25,7 +26,10 @@
             <Image
                 Source="{Binding Image2}"
                 WidthRequest="210"
-                HeightRequest="350"/>
+                HeightRequest="350"
+                />
+            
+            
             
         </Grid>
 
@@ -54,6 +58,18 @@
                     Grid.Column="1"
                     IsVisible="{Binding AtacarButton}"
                     Command="{Binding AtacarCommand}"/>
+            
+            <Button x:Name="JogarNovamenteButton" 
+                    Text="Jogar Novamente"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    IsVisible="{Binding JogarDNV}"
+                    Command="{Binding JogarNovamenteCommand}"/>
+            <Button x:Name="InventarioButton"
+                    Text="Inventário"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Clicked="InventarioButton_Clicked"/>
         </Grid>
 
     </Grid>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DivineSpark.Views.InventarioView"
+             Title="InventarioView">
+    <Grid Margin="0" Padding="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- imagem da sala tá aqui(nesse caso será a imagem de fundo do inventário)-->
+        <Image Grid.Row="0" Source="fundoinventario.png" Aspect="AspectFill" />
+
+        
+        <!--primeira metade da tela-->
+        <Grid Grid.Row="0" >
+            
+            <!--esse divide a parte de cima da tela em duas colunas-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+
+                <!--esse aqui pega a primeria metade da tela de cima-->
+                <Grid Grid.Column="0">
+                    <!--divide em 5 colunas e quatro linhas-->
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                    
+                </Grid>
+
+                <!--esse aqui pega a segunda metade da tela de cima-->
+                <Grid Grid.Column="1">
+
+                </Grid>
+            </Grid>
+            
+            
+            
+
+        </Grid>
+
+
+        <!--segunda metade da tela-->
+        <Grid Grid.Row="1" ColumnSpacing="50" RowSpacing="25" Margin="0" Padding="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+        </Grid>
+
+    </Grid>
+</ContentPage>

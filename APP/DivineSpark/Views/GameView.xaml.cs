@@ -14,4 +14,8 @@ public partial class GameView : ContentPage, INotifyPropertyChanged
 
     }
 
+    private void InventarioButton_Clicked(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new InventarioView());
+    }
 }
