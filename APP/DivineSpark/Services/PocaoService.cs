@@ -66,5 +66,41 @@ namespace DivineSpark.Services
             return pocao;
         }
 
+        public async Task<Pocao> GetPocaoByIdAsync(int id) // TASK: usado no await
+        {
+            Debug.WriteLine("Chamou!! o GetPocaoByIdAsync");
+            Pocao pocao = new Pocao();
+            try
+            {
+                HttpResponseMessage response = await httpClient.GetAsync($"{uri}/{id}");//quero saber todos os posts;
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();// tranforma o conteudo em string;
+
+                    Debug.WriteLine($"Resposta JSON: {content}");
+
+                    pocao = JsonSerializer.Deserialize<Pocao>(content, jsonSerializerOptions);
+                }
+                else
+                {
+                    // se der erro na chama da API mostra
+                    Debug.WriteLine($"Erro na chamada à API: {response.StatusCode}");
+                }
+            }
+            catch (JsonException ex)
+            {
+                // se der alguma exeption ai mostra
+                Debug.WriteLine($"Exceção ocorrida: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                // se der alguma exeption ai mostra
+                Debug.WriteLine($"Exceção ocorrida: {ex.Message}");
+            }
+            Debug.WriteLine($"pocao encontrada: ID={pocao.Id}");
+            return pocao;
+        }
+
+
     }
 }

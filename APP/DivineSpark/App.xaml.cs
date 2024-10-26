@@ -12,7 +12,7 @@ namespace DivineSpark
         {
             InitializeComponent();
 
-            // Configurando DI
+            // Configurando DI (isso aqui ta servindo para que eu possa usar os valores da personagem viewmodel (setados quando Esolher() roda) na salaviewmodel)
             var service = new ServiceCollection();
             service.AddSingleton<PersonagemViewModel>();
             service.AddTransient<SalaViewModel>(provider =>
@@ -20,6 +20,7 @@ namespace DivineSpark
                 var personagemViewModel = provider.GetService<PersonagemViewModel>();
                 return new SalaViewModel(personagemViewModel);
             });
+            
 
             Services = service.BuildServiceProvider();
             MainPage = new AppShell();
