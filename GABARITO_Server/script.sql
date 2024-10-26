@@ -193,9 +193,13 @@ INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALU
 INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (16, 1, null, null, null, null, 5, 'salan.png')
 INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (17, 12, 0, null, null, null, 13, 'salan.png')
 
-INSERT INTO Personagem (ID,nome,vidaMax,vidaAtual,forca,agilidade,nivel,equipamento,imagem) VALUES (1, 'Lorax', 10, 10, 10, 10, 10, 1, 'p1.png')
-INSERT INTO Personagem (ID,nome,vidaMax,vidaAtual,forca,agilidade,nivel,equipamento,imagem) VALUES (2, 'Lorax2', 10, 10, 10, 10, 10, 1, 'p2.png')
-INSERT INTO Personagem (ID,nome,vidaMax,vidaAtual,forca,agilidade,nivel,equipamento,imagem) VALUES (3, 'Lorax3', 10, 10, 10, 10, 10, 1, 'p3.png')
+INSERT INTO Personagem (ID,nome,vidaMax,vidaAtual,forca,agilidade,nivel,equipamento,imagem) VALUES (1, 'Eneias', 10, 10, 10, 10, 10, 1, 'p1.png')
+INSERT INTO Personagem (ID,nome,vidaMax,vidaAtual,forca,agilidade,nivel,equipamento,imagem) VALUES (2, 'Réia', 10, 10, 10, 10, 10, 1, 'p2.png')
+INSERT INTO Personagem (ID,nome,vidaMax,vidaAtual,forca,agilidade,nivel,equipamento,imagem) VALUES (3, 'Jasão', 10, 10, 10, 10, 10, 1, 'p3.png')
 
+--INSERT INTO Personagem(ID, nome, forca,agilidade, nivel, vidaAtual, vidaMax, imagem) VALUES(1, 'Eneias', 5, 2, 1, 3, 3, 'p1.png')
+--INSERT INTO Personagem(ID, nome, forca,agilidade, nivel, vidaAtual, vidaMax, imagem) VALUES(2, 'Réia', 2, 3, 1, 5, 5, 'p2.png')
+--INSERT INTO Personagem(ID, nome, forca,agilidade, nivel, vidaAtual, vidaMax, imagem) VALUES(3, 'Jasão', 3,5, 1, 2, 2, 'p3.png')
+--o pessoal colocou esses commits de forma errada, colocaram qunatos pontos ele tem no status ao invés de quanto do status ele tem	
 select * from Personagem
 drop table Personagem
