@@ -14,7 +14,7 @@ namespace DivineSpark.Services
     {
         private HttpClient httpClient;
         private Personagem personagem;
-        Uri uri = new Uri("http://localhost:8080/Sala");
+        Uri uri = new Uri("http://localhost:8080/Personagem");
         private ObservableCollection<Personagem> personagens;
         private JsonSerializerOptions jsonSerializerOptions;
 
@@ -63,6 +63,41 @@ namespace DivineSpark.Services
             {
                 Debug.WriteLine(e.Message);
             }
+            return personagem;
+        }
+
+        public async Task<Personagem> GetPersonagemByIdAsync(int id) // TASK: usado no await
+        {
+            Debug.WriteLine("Chamou!! o GetPersonagemByIdAsync");
+            Personagem personagem = new Personagem();
+            try
+            {
+                HttpResponseMessage response = await httpClient.GetAsync($"{uri}/{id}");//quero saber todos os posts;
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();// tranforma o conteudo em string;
+
+                    Debug.WriteLine($"Resposta JSON: {content}");
+
+                    personagem = JsonSerializer.Deserialize<Personagem>(content, jsonSerializerOptions);
+                }
+                else
+                {
+                    // se der erro na chama da API mostra
+                    Debug.WriteLine($"Erro na chamada à API: {response.StatusCode}");
+                }
+            }
+            catch (JsonException ex)
+            {
+                // se der alguma exeption ai mostra
+                Debug.WriteLine($"Exceção ocorrida: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                // se der alguma exeption ai mostra
+                Debug.WriteLine($"Exceção ocorrida: {ex.Message}");
+            }
+            Debug.WriteLine($"personagem encontrada: ID={personagem.Id}");
             return personagem;
         }
 

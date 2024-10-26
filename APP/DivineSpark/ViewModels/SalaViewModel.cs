@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -9,11 +10,13 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using DivineSpark.Models;
 using DivineSpark.Services;
 using DivineSpark.Views;
+using DivineSpark.ViewModels;
+
 
 
 namespace DivineSpark.ViewModels
 {
-    internal partial class SalaViewModel : ObservableObject
+    internal partial class SalaViewModel : ObservableObject, INotifyPropertyChanged
     {
         [ObservableProperty]
         public int id;
@@ -37,7 +40,7 @@ namespace DivineSpark.ViewModels
         public int? tras;
 
         [ObservableProperty]
-        public string image = "fundomenu.jpg";
+        public string image = "salaf.jpg";
 
         [ObservableProperty]
         public bool podeEsquerda = false;
@@ -46,22 +49,30 @@ namespace DivineSpark.ViewModels
         public bool podeDireita = false;
 
         [ObservableProperty]
-        public bool podeFrente = false;
+        public bool podeFrente = true;
 
         [ObservableProperty]
         public bool podeTras = false;
 
         [ObservableProperty]
-        public bool logoVisible = true;
+        public bool atacarButton = false;
 
         [ObservableProperty]
-        public bool jogarVisible = true;
+        public string image2;
 
-        [ObservableProperty]
-        public bool creditosVisible = true;
+        /*        [ObservableProperty]
+                public bool logoVisible = true;
+
+                [ObservableProperty]
+                public bool jogarVisible = true;
+
+                [ObservableProperty]
+                public bool creditosVisible = true;*/
 
         SalaService salaService = new SalaService();
-        MonstroService monstroService;
+        MonstroService monstroService = new();
+        private readonly PersonagemViewModel personagemViewModel;
+        ArmaService armaService = new ArmaService();
         BauService bauService;
         
         public ICommand TesteCommand { get; set; }
@@ -70,7 +81,9 @@ namespace DivineSpark.ViewModels
         public ICommand DireitaButtonCommand { get; set; }
         public ICommand FrenteButtonCommand { get; set; }
         public ICommand TrasButtonCommand { get; set; }
-        public SalaViewModel()
+        public ICommand AtacarCommand { get; set; }
+
+        public SalaViewModel(PersonagemViewModel personagemViewModel)
         {
             //GerarSalaCommand = new Command(GerarSala);
             Debug.WriteLine("SalaViewModel inicializado");
@@ -82,18 +95,19 @@ namespace DivineSpark.ViewModels
             DireitaButtonCommand = new Command(DireitaButton);
             FrenteButtonCommand = new Command(FrenteButton);
             TrasButtonCommand = new Command(TrasButton);
-            TesteCommand = new Command(async () => await Teste());
+            AtacarCommand = new Command(Atacar);
+            this.personagemViewModel = personagemViewModel;
         }
 
 
-
+            //essa lista guarda as salas de monstro que você ja passou e faz com que o monstro não apareça mais nela
+            List<int> SalasJaDerrotadas = new List<int>();
         public async Task AtualizaSala(int id)
         {
-            LogoVisible = false;
-            JogarVisible = false;
-            CreditosVisible = false;
-            Debug.WriteLine($"parâmetro: {id}");
-            Console.WriteLine($"parâmetro: {id}");
+            /*            
+                        Debug.WriteLine($"parâmetro: {id}");
+                        Console.WriteLine($"parâmetro: {id}");
+            Debug.WriteLine($"Chamou atualiza sala");*/
 
             // Buscando a sala
             Sala sala = await salaService.GetSalaByIdAsync(id);
@@ -106,19 +120,28 @@ namespace DivineSpark.ViewModels
 
             // Atualizando botões
             AtualizaBotoes(sala);
+
+            //Batalha
+            
+            if (MonstroId != null && !SalasJaDerrotadas.Contains(Id))  
+            {
+                SalasJaDerrotadas.Add(Id);
+                Debug.WriteLine($"SALAS JÁ DERROTADAS----{SalasJaDerrotadas}----");
+                IniciarBatalha();
+            }
         }
 
 
 
         public async void AtualizaBotoes(Sala sala)
         {
-            Debug.WriteLine($"CHAMOU atualizaBotoes    parametro: {sala}     id do parametro {sala.Id}    esquerda {sala.Esquerda}   direita {sala.Direita}     tras {sala.Tras}     frente {sala.Frente}    Image {Image}");
+            //Debug.WriteLine($"CHAMOU atualizaBotoes    parametro: {sala}     id do parametro {sala.Id}    esquerda {sala.Esquerda}   direita {sala.Direita}     tras {sala.Tras}     frente {sala.Frente}    Image {Image}");
             PodeEsquerda = (sala.Esquerda == null) ? false : true;
             PodeDireita = (sala.Direita == null) ? false : true;
             PodeFrente = (sala.Frente == null) ? false : true;
             PodeTras = (sala.Tras == null) ? false : true;
-
-            Debug.WriteLine($"CHAMOU atualizaBotoes    parametro: {sala}     id do parametro {sala.Id}    esq {PodeEsquerda}   dir {PodeDireita}     tras {PodeTras}     fr {PodeFrente}");
+            AtacarButton = false;
+            //Debug.WriteLine($"CHAMOU atualizaBotoes    parametro: {sala}     id do parametro {sala.Id}    esq {PodeEsquerda}   dir {PodeDireita}     tras {PodeTras}     fr {PodeFrente}");
         }
 
         public async void EsquerdaButton()
@@ -144,20 +167,50 @@ namespace DivineSpark.ViewModels
             Sala sala = await salaService.GetSalaByIdAsync(Id);
             AtualizaSala((int)sala.Tras);
         }
-        public async Task Teste()
+
+        public async void IniciarBatalha()
         {
-            Image = "salaedf.png";
-            Debug.WriteLine("foi");
-            Sala sala1 = await salaService.GetSalaByIdAsync(1);
-            Debug.WriteLine($"Sala {sala1.BauId}, {sala1.Id}, {sala1.MonstroId}");
-            Id=sala1.Id;
+            PodeEsquerda = false;
+            PodeDireita = false;
+            PodeFrente = false;
+            PodeTras = false;
+            AtacarButton = true;
+
+            Monstro monstro = await monstroService.GetMonstroByIdAsync((int)MonstroId);
+            Image2 = monstro.Image;
         }
         
-       
+        public async void Atacar()
+        {
+            Debug.WriteLine("Atacou!!");
+            //TODAS AS VEZES QUE RODA ELE RECOLOCA OS VALORES NA VARIAVEIS ENTÃO ACABA QUE A VIDA DO MONSTRO NÃO DIMINUI, TEM QUE ARRUMAR A LÓGICA 
+            //tem que pegar a vida max uma só vez e cada vez que tirar um dano tu guarda esse valor em outra variavel
+            Monstro monstro = await monstroService.GetMonstroByIdAsync((int)MonstroId);
+            int vidaMonstro = monstro.VidaMax;
 
-        
+            int idArma = personagemViewModel.Equipamento;
+            Debug.WriteLine($"personagem.equipamento: {personagemViewModel.Equipamento}     idarma: {idArma}");
+            Arma arma = await armaService.GetArmaByIdAsync(idArma);
+            int forcaArma = (int)arma.Dano;
+            
+            int forcaPersonagem = personagemViewModel.Forca;
+            vidaMonstro = vidaMonstro - forcaArma*forcaPersonagem;
+
+            Debug.WriteLine($"força da arma: {forcaArma}     froça personagem: {forcaPersonagem}    ");
+            Debug.WriteLine($"vidaAtualMonstro: {vidaMonstro}");
+            if (vidaMonstro <= 0)
+            {
+                FinalizarBatlha();
+            }
+        }
+
+        private async void FinalizarBatlha()
+        {
+            AtualizaBotoes(await salaService.GetSalaByIdAsync(Id));
+            Image2 = null;
         }
     }
+}
 
 //isso aqui foi o delirio do geramento de sala procedural
 /*public async void GerarSala()

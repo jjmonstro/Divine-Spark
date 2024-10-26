@@ -10,9 +10,9 @@ namespace DivineSpark.Models
     {
         public int Id { get; set; }
         public string Nome { get; set; }
-        public string GanhoVida { get; set; }
-        public int GanhoNivel { get; set; }
-        public bool Possui {  get; set; }
+        public string? GanhoVida { get; set; }
+        public int? GanhoNivel { get; set; }
+        public int? Possui {  get; set; }
         public string Image { get; set; }
     }
 }

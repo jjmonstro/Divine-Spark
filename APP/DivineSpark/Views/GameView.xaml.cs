@@ -1,19 +1,17 @@
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using DivineSpark.ViewModels;
 
 namespace DivineSpark.Views;
 
-public partial class GameView : ContentPage
+public partial class GameView : ContentPage, INotifyPropertyChanged
 {
     public GameView()
     {
-        InitializeComponent();
-        BindingContext = new SalaViewModel();
-        
+        InitializeComponent();  
+        BindingContext = App.Services.GetService<SalaViewModel>();
+
     }
-        void OnJogarClicked(object sender, EventArgs e)
-        {
-            SalaViewModel viewModel = new SalaViewModel();
-            viewModel.AtualizaSala(1);
-        }
+
 }

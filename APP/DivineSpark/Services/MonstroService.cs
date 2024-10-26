@@ -14,7 +14,7 @@ namespace DivineSpark.Services
     {
         private HttpClient httpClient;
         private Monstro monstro;
-        Uri uri = new Uri("http://localhost:8080/Sala");
+        Uri uri = new Uri("http://localhost:8080/Monstro");
         private ObservableCollection<Monstro> monstros;
         private JsonSerializerOptions jsonSerializerOpitons;
 
@@ -44,6 +44,41 @@ namespace DivineSpark.Services
 
             }
             return monstros;
+        }
+
+        public async Task<Monstro> GetMonstroByIdAsync(int id) // TASK: usado no await
+        {
+            Debug.WriteLine("Chamou!! o GetMonstroByIdAsync");
+            Monstro monstro = new Monstro();
+            try
+            {
+                HttpResponseMessage response = await httpClient.GetAsync($"{uri}/{id}");//quero saber todos os posts;
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();// tranforma o conteudo em string;
+
+                    Debug.WriteLine($"Resposta JSON: {content}");
+
+                    monstro = JsonSerializer.Deserialize<Monstro>(content, jsonSerializerOpitons);
+                }
+                else
+                {
+                    // se der erro na chama da API mostra
+                    Debug.WriteLine($"Erro na chamada à API: {response.StatusCode}");
+                }
+            }
+            catch (JsonException ex)
+            {
+                // se der alguma exeption ai mostra
+                Debug.WriteLine($"Exceção ocorrida: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                // se der alguma exeption ai mostra
+                Debug.WriteLine($"Exceção ocorrida: {ex.Message}");
+            }
+            Debug.WriteLine($"monstro encontrada: ID={monstro.Id}");
+            return monstro;
         }
     }
 }

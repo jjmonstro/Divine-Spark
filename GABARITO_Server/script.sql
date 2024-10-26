@@ -6,9 +6,23 @@ CREATE TABLE Arma (
     nome VARCHAR (50),
     dano DECIMAL,  
     descricao VARCHAR (350),
-    possui BIT
+    possui INT,
+	imagem VARCHAR(50)
 );
- 
+drop table Arma
+drop table Bau
+Drop table Sala
+
+ALTER TABLE Arma
+ADD imagem VARCHAR(50);
+
+-- Alterar a coluna "possui" do tipo BIT para INT
+ALTER TABLE Arma
+ALTER COLUMN possui INT;
+
+DELETE FROM Arma
+DELETE FROM Bau
+DELETE FROM Sala
 
 /*
     eu (correia) coloquei o dano como decimal para que
@@ -24,8 +38,12 @@ CREATE TABLE Monstro (
     vidaMax INT,
     vidaAtual INT,
     forca INT,
-    agilidade INT
+    agilidade INT,
+	imagem VARCHAR(50)
 );
+Drop table Sala
+DROP TABLE Monstro
+select * from Monstro
 
 CREATE TABLE Pocao (
     ID INT PRIMARY KEY,
@@ -64,8 +82,8 @@ CREATE TABLE Personagem (
     forca INT,
     agilidade INT,
     nivel INT,
-    posicao INT FOREIGN KEY
-    REFERENCES Sala(ID)
+	equipamento INT,
+	imagem VARCHAR(50)
     --mana INT, é uma ideia boa mas por enquanto acho mais fácil tirar
 );
 -- por enquanto a questão da experiência não esta adicionada, vamos focar em fazer funcionar
@@ -97,13 +115,12 @@ CREATE TABLE Personagem (
 
 
 -------------- inserts, são coisas que a api vai só puxar do banco
-INSERT INTO Arma (ID,nome,dano,descricao) VALUES (1, 'Espada de Madeira', 1.05, 'Uma simples espada de madeira...')
-INSERT INTO Arma (ID,nome,dano,descricao) VALUES (2, 'Espada de Prata', 1.09, 'Uma simples espada de Ferro...')
-INSERT INTO Arma (ID,nome,dano,descricao) VALUES (3, 'Espada de Ouro', 1.12, 'Uma bela espada de Ouro')
-INSERT INTO Arma (ID,nome,dano,descricao) VALUES (4, 'Espada de Rubi', 1.2, 'Uma espada forjada inteiramente do rubi mais brilhante')
-INSERT INTO Arma (ID,nome,dano,descricao) VALUES (5, 'Tridente de Netuno', 5, 'O tridente de Netuno, majestoso e imponente, brilha com uma aura celestial. Forjado nos abismos do oceano, suas três pontas cortam as ondas e dominam o reino das profundezas, refletindo o poder supremo do deus dos mares.')
-INSERT INTO Arma (ID,nome,dano,descricao) VALUES (6, 'Trovão de Júpiter', 99, 'O raio de Júpiter, forjado no coração dos céus, relampeja com uma fúria celestial. Este dardo de pura energia divina, envolto em chamas e eletricidade, descerra os céus e domina os trovões com um estrondo primordial. Seu brilho é o selo do poder supremo e a marca da soberania do rei dos deuses.')
-INSERT INTO Arma (ID,nome,dano,descricao) Values (0, Null,Null,Null)
+INSERT INTO Arma (ID,nome,dano,descricao,possui,imagem) VALUES (1, 'Espada de Madeira', 1.05, 'Uma simples espada de madeira...', 1, 'espadamadeira.png')
+INSERT INTO Arma (ID,nome,dano,descricao,possui,imagem) VALUES (2, 'Espada de Prata', 1.09, 'Uma simples espada de Ferro...', null, 'espadaferro.png')
+INSERT INTO Arma (ID,nome,dano,descricao,possui,imagem) VALUES (3, 'Espada de Ouro', 1.12, 'Uma bela espada de Ouro', null, 'espadaouro.png')
+INSERT INTO Arma (ID,nome,dano,descricao,possui,imagem) VALUES (4, 'Espada de Rubi', 1.2, 'Uma espada forjada inteiramente do rubi mais brilhante', null, 'espadarubi.png')
+INSERT INTO Arma (ID,nome,dano,descricao,possui,imagem) VALUES (5, 'Tridente de Netuno', 5, 'O tridente de Netuno, majestoso e imponente, brilha com uma aura celestial. Forjado nos abismos do oceano, suas três pontas cortam as ondas e dominam o reino das profundezas, refletindo o poder supremo do deus dos mares.', null, 'tridentenetuno.png')
+INSERT INTO Arma (ID,nome,dano,descricao,possui,imagem) VALUES (6, 'Trovão de Júpiter', 99, 'O raio de Júpiter, forjado no coração dos céus, relampeja com uma fúria celestial. Este dardo de pura energia divina, envolto em chamas e eletricidade, descerra os céus e domina os trovões com um estrondo primordial. Seu brilho é o selo do poder supremo e a marca da soberania do rei dos deuses.', null, 'trovao.png')
 
 --esses inserts de monstro serão decididos pelo caderno da marina
 
@@ -116,41 +133,43 @@ INSERT INTO Pocao (ID,nome,ganho_vida,ganho_nivel) VALUES (5, 'Poção de nivel 
 INSERT INTO Pocao (ID,nome,ganho_vida,ganho_nivel) VALUES (6, 'Poção de nivel grande', 0, 8)
 INSERT INTO Pocao (ID,nome,ganho_vida,ganho_nivel) VALUES (7, 'Poção mista', 30, 3)
 INSERT INTO Pocao (ID,nome,ganho_vida,ganho_nivel) VALUES (8, 'Lágrima de Plutão', 999, 999)
-INSERT INTO Pocao (ID,nome,ganho_vida,ganho_nivel) VALUES (0, Null, Null, Null)
 
-INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (1, 1, 0)
-INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (2, 2, 0)
-INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (3, 3, 0)
-INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (4, 4, 0)
-INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (5, 5, 0)
-INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (6, 6, 0)
-INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (7, 7, 0)
-INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (8, 8, 0)
-INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (9, 0, 1)
-INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (10, 0, 2)
-INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (11, 0, 2)
-INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (12, 0, 3)
-INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (13, 0, 4)
-INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (14, 0, 5)
-INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (15, 0, 6)
-INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (16, 0, 6)
-INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (0, null, null)
+INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (1, 1, null)
+INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (2, 2, null)
+INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (3, 3, null)
+INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (4, 4, null)
+INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (5, 5, null)
+INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (6, 6, null)
+INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (7, 7, null)
+INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (8, 8, null)
+INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (9, null, 1)
+INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (10, null, 2)
+INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (11, null, 2)
+INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (12, null, 3)
+INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (13, null, 4)
+INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (14, null, 5)
+INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (15, null, 6)
+INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (16, null, 6)
+delete from Bau
+select * from Bau
+select * from Arma
+select * from Pocao
 
-INSERT INTO Monstro (ID,nome,vidaMax,vidaAtual,forca,agilidade) VALUES (0,Null,Null,Null,Null,Null)
-Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade) values (1, 'Górgona', 10, 10, 5, 10)
-Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade) values (2, 'Laelaps', 15, 15, 7, 6)
-Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade) values (3, 'Minerva', 20, 20, 6, 12)
-Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade) values (4, 'Gigante', 10, 10, 7, 2)
-Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade) values (5, 'Polifemo', 15, 15, 7, 4)
-Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade) values (6, 'Netuno', 25, 25, 10, 10)
-Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade) values (7, 'Empousa', 10, 10, 4, 6)
-Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade) values (8, 'Cerbero', 15, 15, 7, 4 )
-Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade) values (9, 'Plutão', 25, 25, 10, 14)
-Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade) values (10, 'Gegenes', 10, 10, 5, 7)
-Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade) values (11, 'Hidra', 10,10,6,8)
-Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade) values (12, 'Quimera', 10,10,8,7)
-Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade) values (13, 'Jupiter', 25, 25, 15, 10)
-INSERT INTO Monstro (ID,nome,vidaMax,vidaAtual,forca,agilidade) VALUES (14, 'Correx', 100, 100, 100, 100)
+
+Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade,imagem) values (1, 'Górgona', 10, 10, 5, 10, 'gorgona.png')
+Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade,imagem) values (2, 'Laelaps', 15, 15, 7, 6, 'laelaps.png')
+Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade,imagem) values (3, 'Minerva', 20, 20, 6, 12, 'minerva.png')
+Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade,imagem) values (4, 'Gigante', 10, 10, 7, 2, 'gigante.png')
+Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade,imagem) values (5, 'Polifemo', 15, 15, 7, 4, 'polifemo.png')
+Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade,imagem) values (6, 'Netuno', 25, 25, 10, 10, 'netuno.png')
+Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade,imagem) values (7, 'Empousa', 10, 10, 4, 6, 'empousa.png')
+Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade,imagem) values (8, 'Cerbero', 15, 15, 7, 4, 'cerbero.png')
+Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade,imagem) values (9, 'Plutão', 25, 25, 10, 14, 'plutao.png')
+Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade,imagem) values (10, 'Gegenes', 10, 10, 5, 7, 'gegenes.png')
+Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade,imagem) values (11, 'Hidra', 10,10,6,8, 'hidra.png')
+Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade,imagem) values (12, 'Quimera', 10,10,8,7, 'quimera.png')
+Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade,imagem) values (13, 'Jupiter', 25, 25, 15, 10, 'jupiter.png')
+INSERT INTO Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade,imagem) VALUES (14, 'Correx', 100, 100, 100, 100, 'correx.png')
 
 -- salad.png  vai só para diretia
 -- saladf.png   vai para direita e frent
@@ -179,3 +198,10 @@ INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALU
 INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (15, 13, null, null, null, null, 14, 'salan.png')
 INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (16, 1, null, null, null, null, 5, 'salan.png')
 INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (17, 12, 0, null, null, null, 13, 'salan.png')
+
+INSERT INTO Personagem (ID,nome,vidaMax,vidaAtual,forca,agilidade,nivel,equipamento,imagem) VALUES (1, 'Lorax', 10, 10, 10, 10, 10, 1, 'p1.png')
+INSERT INTO Personagem (ID,nome,vidaMax,vidaAtual,forca,agilidade,nivel,equipamento,imagem) VALUES (2, 'Lorax2', 10, 10, 10, 10, 10, 1, 'p2.png')
+INSERT INTO Personagem (ID,nome,vidaMax,vidaAtual,forca,agilidade,nivel,equipamento,imagem) VALUES (3, 'Lorax3', 10, 10, 10, 10, 10, 1, 'p3.png')
+
+select * from Personagem
+drop table Personagem

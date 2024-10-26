@@ -14,7 +14,7 @@ namespace DivineSpark.Services
     {
         private HttpClient httpClient;
         private Bau bau;
-        Uri uri = new Uri("http://localhost:8080/Sala");
+        Uri uri = new Uri("http://localhost:8080/Bau");
         private ObservableCollection<Bau> baus;
         private JsonSerializerOptions jsonSerializerOptions;
 

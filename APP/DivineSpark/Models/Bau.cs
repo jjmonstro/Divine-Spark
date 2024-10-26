@@ -13,13 +13,13 @@ namespace DivineSpark.Models
 
 
         [ForeignKey("Pocao")]
-        public int PocaoId { get; set; }
-        public Pocao Pocao { get; set; }
+        public int? PocaoId { get; set; }
+        
 
 
         [ForeignKey("Arma")]
-        public int ArmaId { get; set; }
-        public Arma Arma { get; set; }
+        public int? ArmaId { get; set; }
+        
         public string Image { get; set; }
     }
 }

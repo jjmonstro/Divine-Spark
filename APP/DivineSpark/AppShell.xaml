@@ -8,7 +8,7 @@
     Title="DivineSpark">
 
     <ShellContent
-        ContentTemplate="{DataTemplate local:Views.GameView}"
-        Route="Views/GameView" />
+        ContentTemplate="{DataTemplate local:Views.MenuPage}"
+        Route="Views/MenuPage" />
 
 </Shell>

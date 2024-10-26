@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DivineSpark.Views.EscolhaPage"
+             xmlns:local="clr-namespace:DivineSpark.ViewModels">
+    <ContentPage.BindingContext>
+        <local:PersonagemViewModel />
+    </ContentPage.BindingContext>
+    <Grid Margin="0" Padding="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+                                                                                                        <!--| esse Aspect que faz ela ficar toda cagada, ele faz com que ela fique grande o suficiente para preencher a tela-->
+        <Image Grid.Row="0" Source="fundoescolha.png" HorizontalOptions="Fill" VerticalOptions="Fill" Aspect="AspectFill"/>
+
+        <Grid Grid.Row="0" ColumnSpacing="50" Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <!--coissas que vão ficar em cima da imagem de fundo, tipo bau e monstro ficarão aqui -->
+            
+            <Button 
+                ImageSource="p1.png"
+                Grid.Column="0"
+                BackgroundColor="Transparent" 
+                WidthRequest="210"
+                HeightRequest="350"
+                Clicked="OnButton1Clicked"/>
+
+            <Button 
+                ImageSource="p2.png"
+                Grid.Column="1"
+                BackgroundColor="Transparent" 
+                WidthRequest="210"
+                HeightRequest="350"
+                Clicked="OnButton2Clicked"/>
+
+
+            <Button 
+                ImageSource="p3.png"
+                Grid.Column="2"
+                BackgroundColor="Transparent" 
+                WidthRequest="210"
+                HeightRequest="350"
+                Clicked="OnButton3Clicked"/>
+
+        </Grid>
+
+
+        <Grid Grid.Row="1" ColumnSpacing="50" RowSpacing="25" Margin="0" Padding="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            
+            <Button x:Name="EscolhaButton1" Text="botão pra escolher1" Grid.Row="1" Grid.Column="1" IsVisible="False" Clicked="Escolher1Clicked"/><!--ASSIM É O N FUNCIONOU -> Command="{Binding EscolherCommand}" CommandParameter="1" IsEnabled="True"-->
+            <Button x:Name="EscolhaButton2" Text="botão pra escolher2" Grid.Row="1" Grid.Column="1" IsVisible="False" Clicked="EscolhaButton2_Clicked"/>
+            <Button x:Name="EscolhaButton3" Text="botão pra escolher3" Grid.Row="1" Grid.Column="1" IsVisible="False" Clicked="EscolhaButton3_Clicked"/>
+
+
+        </Grid>
+
+    </Grid>
+</ContentPage>
