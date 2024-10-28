@@ -5,7 +5,7 @@ using DivineSpark.ViewModels;
 
 namespace DivineSpark.Views;
 
-public partial class GameView : ContentPage, INotifyPropertyChanged
+public partial class GameView : ContentPage
 {
     public GameView()
     {
@@ -14,8 +14,9 @@ public partial class GameView : ContentPage, INotifyPropertyChanged
 
     }
 
-    private void InventarioButton_Clicked(object sender, EventArgs e)
+    private async void InventarioButtonClicked(object sender, EventArgs e)
     {
-        Navigation.PushAsync(new InventarioView());
+        Debug.WriteLine("inventario foi clicado");
+        await Navigation.PushAsync(new InventarioView());
     }
 }

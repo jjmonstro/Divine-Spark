@@ -20,10 +20,10 @@ namespace DivineSpark
                 var personagemViewModel = provider.GetService<PersonagemViewModel>();
                 return new SalaViewModel(personagemViewModel);
             });
-            
+            service.AddTransient<InventarioViewModel>();
 
             Services = service.BuildServiceProvider();
-            MainPage = new AppShell();
+            MainPage = new NavigationPage(new AppShell());
         }
 
     }

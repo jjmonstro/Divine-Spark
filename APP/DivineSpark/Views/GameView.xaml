@@ -69,7 +69,8 @@
                     Text="Inventário"
                     Grid.Row="0"
                     Grid.Column="0"
-                    Clicked="InventarioButton_Clicked"/>
+                    Clicked="InventarioButtonClicked"
+                    IsEnabled="True"/>
         </Grid>
 
     </Grid>

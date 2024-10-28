@@ -20,7 +20,7 @@
         <Image Grid.Row="0" Source="fundoinventario.png" Aspect="AspectFill" />
 
         
-        <!--primeira metade da tela-->
+        <!--primeira metade da tela (parte de cima)-->
         <Grid Grid.Row="0" >
             
             <!--esse divide a parte de cima da tela em duas colunas-->
@@ -44,19 +44,49 @@
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            
-                                <Image Source="{Binding Source}"
+                            <!--como essa image ta tendo uma ação ao ser clicada, acho que ela deveria ser um button, só que como eu já fiz todo o esquema como image 
+                                eu to com preguiça de transformar isso em button e dar algum b.o, então o meu amigo vai me ajudar a colocar um equivalente ao Clicked na image-->
+                            <Image Source="{Binding Source}"
                                     Aspect="AspectFill"
                                     WidthRequest="75"
-                                    HeightRequest="75" />
-                            
+                                    HeightRequest="75">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:InventarioViewModel}}, Path=SelecionarArmaCommand}"
+                                    CommandParameter="{Binding .}" />
+                                </Image.GestureRecognizers>
+                            </Image>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
 
                 <!--esse aqui pega a segunda metade da tela de cima-->
-                <Grid Grid.Column="1">
-                
+                <Grid Grid.Column="1" Padding="10">
+                    <StackLayout VerticalOptions="Center">
+                        <Image 
+                            Source="{Binding ArmaSelecionadaImagem}"
+                            Aspect="AspectFill"
+                            HeightRequest="170" WidthRequest="170" />
+                        
+                        <Label 
+                           Text="{Binding ArmaSelecionadaDescricao}"
+                           FontAttributes="Bold"
+                           FontSize="15"
+                           Margin="0,10,0,0"
+                           TextColor="White"/> 
+                        
+                        <Label 
+                            Text="{Binding ArmaSelecionadaDano}"
+                            FontSize="17"
+                            TextColor="White"/>
+                        
+                        <Label 
+                            Text="{Binding GanhoNivel}"
+                            FontSize="17"
+                            TextColor="White"/> 
+
+
+                    </StackLayout>
                 </Grid>
             </Grid>
             

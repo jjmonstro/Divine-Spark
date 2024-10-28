@@ -5,10 +5,6 @@
              xmlns:local="clr-namespace:DivineSpark.ViewModels"
              Shell.NavBarIsVisible="False">
 
-    <!--<ContentPage.BindingContext>
-        <local:SalaViewModel />
-    </ContentPage.BindingContext>-->
-
     <Grid Margin="0" Padding="0" RowSpacing="20">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -39,11 +35,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <!--                                                                       | com o command não estava nem chamando o comando atualizaSala
-            <Button x:Name="JogarButton" Text="Jogar" Grid.Row="0" Grid.Column="1" Command="{Binding AtualizaSalaCommand}" CommandParameter="1" IsVisible="{Binding JogarVisible}" IsEnabled="True"/>
-            !!!!!!!!!!!!!
-            O botão está funcionando, da para ver pelo console, porém, os bindings não estão sendo atualizados, tentei resolver mas não consegui
-            !!!!!!!!!!!!!-->
+   
             <Button x:Name="JogarButton" Text="Jogar" Grid.Row="0" Grid.Column="1" Clicked="JogarBtnClicked" IsEnabled="True"/>
             <Button x:Name="CreditosButton" Text="Créditos" Grid.Row="1" Grid.Column="1" />
 

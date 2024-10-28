@@ -7,8 +7,9 @@ public partial class InventarioView : ContentPage
 {
 	public InventarioView()
 	{
-		BindingContext = new InventarioViewModel();
 		InitializeComponent();
+		BindingContext = new InventarioViewModel();
+		
 	}
 
 

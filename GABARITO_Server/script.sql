@@ -4,7 +4,7 @@ USE Jogo;
 CREATE TABLE Arma (
     ID INT PRIMARY KEY,
     nome VARCHAR (50),
-    dano DECIMAL,  
+    dano FLOAT,  
     descricao VARCHAR (350),
     possui INT,
 	imagem VARCHAR(50)
@@ -24,6 +24,11 @@ DELETE FROM Arma
 DELETE FROM Bau
 DELETE FROM Sala
 
+DROP TABLE Sala
+DROP TABLE Bau
+DROP TABLE Arma
+
+
 /*
     eu (correia) coloquei o dano como decimal para que
     o dano que o personagem da seja determinado pela arma que ele usa,
@@ -42,7 +47,8 @@ CREATE TABLE Monstro (
 	imagem VARCHAR(50)
 );
 Drop table Sala
-DROP TABLE Monstro
+DROP TABLE Bau
+DROP TABLE Pocao
 select * from Monstro
 
 CREATE TABLE Pocao (
@@ -51,7 +57,8 @@ CREATE TABLE Pocao (
     ganho_vida INT,
     ganho_nivel INT,
     possui INT,
-	imagem VARCHAR(50)
+	imagem VARCHAR(50),
+	descricao VARCHAR (350)
 );
 
 CREATE TABLE Bau (
@@ -130,14 +137,14 @@ INSERT INTO Arma (ID,nome,dano,descricao,possui,imagem) VALUES (11, 'Cajado dos 
 INSERT INTO Arma (ID,nome,dano,descricao,possui,imagem) VALUES (12, 'Cajado do Vulcão', 2.3, 'Um cajado de obsidiana, encantado nas profundezas do maior dos vulcões, capaz de destruir um vilarejo com apenas uma de suas bolas de fogo', null, 'cajadovulcao.png')
 
 
-INSERT INTO Pocao (ID,nome,ganho_vida,ganho_nivel,imagem,possui) VALUES (1, 'Poção de vida pequena', 10, 0, 'pocaovpequena.png', null)
-INSERT INTO Pocao (ID,nome,ganho_vida,ganho_nivel,imagem,possui) VALUES (2, 'Poção de vida média', 30, 0, 'pocaovmedia.png', null)
-INSERT INTO Pocao (ID,nome,ganho_vida,ganho_nivel,imagem,possui) VALUES (3, 'Poção de vida grande', 50, 0, 'pocaovgrande.png', null)
-INSERT INTO Pocao (ID,nome,ganho_vida,ganho_nivel,imagem,possui) VALUES (4, 'Poção de nivel pequena', 0, 2, 'pocaonpequena.png', null)
-INSERT INTO Pocao (ID,nome,ganho_vida,ganho_nivel,imagem,possui) VALUES (5, 'Poção de nivel média', 0, 4, 'pocaonmedia.png', null)
-INSERT INTO Pocao (ID,nome,ganho_vida,ganho_nivel,imagem,possui) VALUES (6, 'Poção de nivel grande', 0, 8, 'pocaongrande.png', null)
-INSERT INTO Pocao (ID,nome,ganho_vida,ganho_nivel,imagem,possui) VALUES (7, 'Poção mista', 30, 3, 'pocaom.png', null)
-INSERT INTO Pocao (ID,nome,ganho_vida,ganho_nivel,imagem,possui) VALUES (8, 'Lágrima de Plutão', 999, 999, 'lagrimaplutao.png', null)
+INSERT INTO Pocao (ID,nome,ganho_vida,ganho_nivel,imagem,possui,descricao) VALUES (1, 'Poção de vida pequena', 10, 0, 'pocaovpequena.png', null,'Uma pequena poção de regeneração, ajuda aventureiros(as) inicantes a curar leves ferimentos')
+INSERT INTO Pocao (ID,nome,ganho_vida,ganho_nivel,imagem,possui,descricao) VALUES (2, 'Poção de vida média', 30, 0, 'pocaovmedia.png', null,'Uma poção de regeneração comum, utilizada por curandeiros em ferimentos e doenças gerais')
+INSERT INTO Pocao (ID,nome,ganho_vida,ganho_nivel,imagem,possui,descricao) VALUES (3, 'Poção de vida grande', 50, 0, 'pocaovgrande.png', null,'Uma grande poção de regeneração, cura quase todos os ferimentos e doenças')
+INSERT INTO Pocao (ID,nome,ganho_vida,ganho_nivel,imagem,possui,descricao) VALUES (4, 'Poção de nivel pequena', 0, 2, 'pocaonpequena.png', null,'Uma pequena poção de experiencia, melhora pequenas habilidades dos aventureiros(as)')
+INSERT INTO Pocao (ID,nome,ganho_vida,ganho_nivel,imagem,possui,descricao) VALUES (5, 'Poção de nivel média', 0, 4, 'pocaonmedia.png', null,'Uma poção de experiencia média, ajuda aventureiros(as) a desenvolverem habiilidades com muito mais facilidade')
+INSERT INTO Pocao (ID,nome,ganho_vida,ganho_nivel,imagem,possui,descricao) VALUES (6, 'Poção de nivel grande', 0, 8, 'pocaongrande.png', null,'Uma poção de experiencia grande, desenvolce qualquer habilidade de maneira significativa')
+INSERT INTO Pocao (ID,nome,ganho_vida,ganho_nivel,imagem,possui,descricao) VALUES (7, 'Poção mista', 30, 3, 'pocaom.png', null,'Uma mistura de poções, cura e aumenta as habilidades do aventureiro(a)')
+INSERT INTO Pocao (ID,nome,ganho_vida,ganho_nivel,imagem,possui,descricao) VALUES (8, 'Lágrima de Plutão', 999, 999, 'lagrimaplutao.png', null,'Em um frasco de cristal lapidado, a Lagrima de Plutão brilha com um brilho etéreo, capturando a essência da morte e renascimento. Seu azul profundo lembra o céu noturno onde as almas se perdem. Ao consumi-la, o aventureiro sente um poder ancestral, capaz de reviver os caídos e conceder visões do além, selando seu destino com a sabedoria dos mortos.')
 
 INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (1, 1, null)
 INSERT INTO Bau (ID,pocao_ID,arma_ID) VALUES (2, 2, null)
@@ -213,7 +220,7 @@ INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALU
 INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (14, null, 14, null, null, 15, 13, 'salaf.png')
 INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (15, 13, null, null, null, null, 14, 'salan.png')
 INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (16, 1, null, null, null, null, 5, 'salan.png')
-INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (17, 12, 0, null, null, null, 13, 'salan.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (17, 12, null, null, null, null, 13, 'salan.png')
 
 INSERT INTO Personagem (ID,nome,vidaMax,vidaAtual,forca,agilidade,nivel,equipamento,imagem) VALUES (1, 'Lorax', 10, 10, 10, 10, 10, 1, 'p1.png')
 INSERT INTO Personagem (ID,nome,vidaMax,vidaAtual,forca,agilidade,nivel,equipamento,imagem) VALUES (2, 'Lorax2', 10, 10, 10, 10, 10, 1, 'p2.png')

@@ -26,5 +26,8 @@ namespace DivineSpark.Models
 
         [JsonPropertyName("imagem")]
         public string Image { get; set; }
+
+        [JsonPropertyName("descricao")]
+        public string Descricao { get; set; }
     }
 }
