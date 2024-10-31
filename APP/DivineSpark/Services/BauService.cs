@@ -44,5 +44,40 @@ namespace DivineSpark.Services
             }
             return baus;
         }
+
+        public async Task<Bau> GetBauByIdAsync(int id) // TASK: usado no await
+        {
+            Debug.WriteLine("Chamou!! o GetBauByIdAsync");
+            Bau bau = new Bau();
+            try
+            {
+                HttpResponseMessage response = await httpClient.GetAsync($"{uri}/{id}");//quero saber todos os posts;
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();// tranforma o conteudo em string;
+
+                    Debug.WriteLine($"Resposta JSON: {content}");
+
+                    bau = JsonSerializer.Deserialize<Bau>(content, jsonSerializerOptions);
+                }
+                else
+                {
+                    // se der erro na chama da API mostra
+                    Debug.WriteLine($"Erro na chamada à API: {response.StatusCode}");
+                }
+            }
+            catch (JsonException ex)
+            {
+                // se der alguma exeption ai mostra
+                Debug.WriteLine($"Exceção ocorrida: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                // se der alguma exeption ai mostra
+                Debug.WriteLine($"Exceção ocorrida: {ex.Message}");
+            }
+            Debug.WriteLine($"Bau encontrada: ID={bau.Id}");
+            return bau;
+        }
     }
 }

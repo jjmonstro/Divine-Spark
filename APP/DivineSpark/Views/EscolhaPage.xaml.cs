@@ -38,7 +38,6 @@ public partial class EscolhaPage : ContentPage
         var pv = App.Services.GetService<PersonagemViewModel>();
         await pv.Escolher(1);
         Navigation.PushAsync(new GameView());
-        
 
         
     }

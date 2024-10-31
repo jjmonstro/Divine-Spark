@@ -14,16 +14,17 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <!--<Image Grid.Row="0" Source="{Binding Image}" Aspect="AspectFill"/>-->
+        <!--img de funso da tela toda-->
+        <Image Source="fundoinventario.png"  Aspect="AspectFill" Grid.RowSpan="2"/>
 
         <Grid Grid.Row="0" >
-            <!--coissas que vão ficar em cima da imagem de fundo, tipo bau e monstro ficarão aqui -->
-            <Image Aspect="AspectFill" Source="fundomenu.jpg" Grid.ColumnSpan="1" Grid.RowSpan="2"/>
+            <!--coissas que vão ficar em cima da imagem de fundo, tipo LOGO-->
+            
             <Image Source="logo.webp" Grid.Row="0" Grid.Column="1"/>
         </Grid>
 
 
-        <Grid Grid.Row="1" ColumnSpacing="50" RowSpacing="25" Margin="0" Padding="0">
+        <Grid Grid.Row="1" ColumnSpacing="50" RowSpacing="25" Margin="30" Padding="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />

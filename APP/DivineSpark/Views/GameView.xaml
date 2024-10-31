@@ -9,7 +9,10 @@
         <local:SalaViewModel />
     </ContentPage.BindingContext>-->
     
-    <Grid Margin="0" Padding="0">
+    
+    
+    
+    <Grid Margin="0" Padding="0" RowSpacing="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
@@ -17,7 +20,11 @@
             <RowDefinition Height="2*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
+        
+        <!--img de funso da tela toda-->
+        <Image Source="fundoinventario.png"  Aspect="AspectFill" Grid.RowSpan="2"/>
+        
+        
         <!-- imagem da sala tá aqui-->
         <Image Grid.Row="0" Source="{Binding Image}" Aspect="AspectFit" />
 
@@ -28,13 +35,22 @@
                 WidthRequest="210"
                 HeightRequest="350"
                 />
-            
-            
-            
+
+            <Image
+                Source="bau.png"
+                IsVisible="{Binding BauVisible}"
+                Scale="0.5"/>
+
+            <Label
+                Text="{Binding VidaExibir}"
+                VerticalOptions="End"
+                HorizontalOptions="Start"
+                TextColor="White"/>
+
         </Grid>
 
 
-        <Grid Grid.Row="1" ColumnSpacing="50" RowSpacing="25" Margin="0" Padding="0">
+        <Grid Grid.Row="1" ColumnSpacing="40" RowSpacing="20" Margin="0" Padding="20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -65,12 +81,27 @@
                     Grid.Column="1"
                     IsVisible="{Binding JogarDNV}"
                     Command="{Binding JogarNovamenteCommand}"/>
+            
             <Button x:Name="InventarioButton"
                     Text="Inventário"
                     Grid.Row="0"
                     Grid.Column="0"
                     Clicked="InventarioButtonClicked"
-                    IsEnabled="True"/>
+                    IsVisible="{Binding InventarioVisible}"/>
+
+            <Button x:Name="NivelButton"
+                Text="Nivel"
+                Grid.Row="0"
+                Grid.Column="2"
+                Clicked="NivelButtonClicked"
+                IsVisible="{Binding NivelVisible}"/>
+
+            <Button x:Name="AbrirBauButton"
+                Text="Abrir"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Command="{Binding AbrirBauCommand}"
+                    IsVisible="{Binding BauVisible}"/>
         </Grid>
 
     </Grid>

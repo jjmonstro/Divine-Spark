@@ -16,7 +16,15 @@ public partial class GameView : ContentPage
 
     private async void InventarioButtonClicked(object sender, EventArgs e)
     {
-        Debug.WriteLine("inventario foi clicado");
         await Navigation.PushAsync(new InventarioView());
+        InventarioViewModel ivm = App.Services.GetService<InventarioViewModel>();
+        ivm.CarregarInventario();
+    }
+
+    private async void NivelButtonClicked(object sender, EventArgs e)
+    {
+        PersonagemViewModel pvm = App.Services.GetService<PersonagemViewModel>();
+        pvm.AtualizaSatatus();
+        await Navigation.PushAsync(new NivelView());
     }
 }

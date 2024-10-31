@@ -1,4 +1,5 @@
 ﻿using DivineSpark.ViewModels;
+using DivineSpark.Views;
 using Microsoft.Extensions.DependencyInjection;
 
 
@@ -15,15 +16,22 @@ namespace DivineSpark
             // Configurando DI (isso aqui ta servindo para que eu possa usar os valores da personagem viewmodel (setados quando Esolher() roda) na salaviewmodel)
             var service = new ServiceCollection();
             service.AddSingleton<PersonagemViewModel>();
+
+            service.AddSingleton<InventarioViewModel>(provider =>
+            {
+                var personagemViewModel = provider.GetService<PersonagemViewModel>();
+                return new InventarioViewModel(personagemViewModel);
+            });
+
             service.AddTransient<SalaViewModel>(provider =>
             {
                 var personagemViewModel = provider.GetService<PersonagemViewModel>();
-                return new SalaViewModel(personagemViewModel);
+                var inventarioViewModel = provider.GetService<InventarioViewModel>();
+                return new SalaViewModel(personagemViewModel,inventarioViewModel);
             });
-            service.AddTransient<InventarioViewModel>();
 
             Services = service.BuildServiceProvider();
-            MainPage = new NavigationPage(new AppShell());
+            MainPage = new NavigationPage(new MenuPage());
         }
 
     }

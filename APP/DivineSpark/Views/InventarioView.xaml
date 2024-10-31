@@ -2,12 +2,13 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:DivineSpark.ViewModels"
-             x:Class="DivineSpark.Views.InventarioView">
+             x:Class="DivineSpark.Views.InventarioView"
+             Shell.NavBarIsVisible="False">
 
-    <ContentPage.BindingContext>
+    <!--<ContentPage.BindingContext>
         <vm:InventarioViewModel />
-    </ContentPage.BindingContext>
-    <Grid Margin="0" Padding="0">
+    </ContentPage.BindingContext>-->
+    <Grid Margin="0" Padding="0" RowSpacing="20">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
@@ -16,10 +17,10 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <!-- imagem da sala tá aqui(nesse caso será a imagem de fundo do inventário)-->
-        <Image Grid.Row="0" Source="fundoinventario.png" Aspect="AspectFill" />
+        <!--img de funso da tela toda-->
+        <Image Source="fundoinventario.png"  Aspect="AspectFill" Grid.RowSpan="2"/>
 
-        
+
         <!--primeira metade da tela (parte de cima)-->
         <Grid Grid.Row="0" >
             
@@ -108,8 +109,22 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            
-            
+
+            <Button x:Name="EquiparButton" 
+                Text="Equipar"
+                Grid.Row="0"
+                Grid.Column="1"
+                IsVisible="{Binding EquiparVisible}"
+                Clicked="EquiparButton_ClickedAsync"/>
+
+            <Button x:Name="UsarButton" 
+                Text="Usar"
+                Grid.Row="0"
+                Grid.Column="1"
+                IsVisible="{Binding UsarVisible}"
+                Clicked="UsarButton_Clicked"
+                />
+
         </Grid>
 
     </Grid>

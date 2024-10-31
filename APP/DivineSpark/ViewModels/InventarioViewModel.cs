@@ -15,7 +15,7 @@ using Application = Microsoft.Maui.Controls.Application;
 
 namespace DivineSpark.ViewModels
 {
-    public partial class InventarioViewModel : ObservableObject, INotifyPropertyChanged
+    internal partial class InventarioViewModel : ObservableObject, INotifyPropertyChanged
     {
         [ObservableProperty]
         private string armaSelecionadaImagem;
@@ -29,29 +29,44 @@ namespace DivineSpark.ViewModels
         [ObservableProperty]
         private string ganhoNivel;
 
+        [ObservableProperty]
+        private bool equiparVisible = false;
+
+        [ObservableProperty]
+        private bool usarVisible = false;
+
+        [ObservableProperty]
+        ObservableCollection<int> armasPossuidas = new ObservableCollection<int>();
+
+        [ObservableProperty]
+        ObservableCollection<int> pocoesPossuidas = new ObservableCollection<int>();
+
+
         ArmaService armaService = new ArmaService();
         PocaoService pocaoService = new PocaoService();
+        private readonly PersonagemViewModel personagemViewModel;
+
         public ObservableCollection<ItemVisual> ImagensInventario { get; set; } = new();
 
         public ICommand SelecionarArmaCommand { get; }
         public ICommand CarregarInventarioCommand { get; set; }
-        public InventarioViewModel() {
+        public ICommand EquiparCommand { get; set; }
+        public ICommand UsarCommand { get; set; }
+        public InventarioViewModel(PersonagemViewModel personagemViewModel) {
             CarregarInventarioCommand = new AsyncRelayCommand(CarregarInventario);
+            EquiparCommand = new Command(Equipar);
+            UsarCommand = new Command(Usar);
             Debug.WriteLine("InventsrioViewmodel inicializdo");
-            CarregarInventarioCommand.Execute(null);
             SelecionarArmaCommand = new RelayCommand<ItemVisual>(item => SelecionarItem(item));
+            this.personagemViewModel = personagemViewModel;
+            ArmasPossuidas.Add(1);
         }
-
+        
         public async Task CarregarInventario()
         {
-            Debug.WriteLine("carregar inventario inicializdo");
-            List<int> ArmasPossuidas = new List<int>() { 1, 2, 3, 4, 5 , 6, 7, 8, 9, 10, 11, 12};
-            List<int> PocoesPossuidas = new List<int>() { 1, 2, 3, 4, 5 , 6, 7, 8};
-
-            //to adicionando artificialmente para teste, o certo é quando você ganhar um item ele vim parar com o id nessas listas
-           
-
+            
             //adicionar no grid
+
             //armas
             ImagensInventario.Clear();
             foreach (int id in ArmasPossuidas)
@@ -83,6 +98,7 @@ namespace DivineSpark.ViewModels
 
             }
         }
+
             private void SelecionarItem(ItemVisual item)
             {
                 if (item == null)
@@ -90,20 +106,87 @@ namespace DivineSpark.ViewModels
                     Debug.WriteLine("item é nulo ao clicar. Verifique o binding do CommandParameter.");
                     return;
                 }
-                if(item.Tipo==1)
+                if(item.Tipo==1) //Arma
                 {
                     ArmaSelecionadaImagem = item.Source;
                     ArmaSelecionadaDescricao = item.Descricao;
                     ArmaSelecionadaDano = "Dano: "+item.Dano.ToString("F2");
                     GanhoNivel = null;
+                    EquiparVisible=true;
+                    UsarVisible=false;
                 }
-                if(item.Tipo == 2)
+                if(item.Tipo == 2) //Pocao
                 {
-                ArmaSelecionadaImagem = item.Source;
-                ArmaSelecionadaDescricao = item.Descricao;
-                ArmaSelecionadaDano = "Ganho de vida: " + item.Dano.ToString("F1");
-                GanhoNivel = "Ganho de nivel: " + item.GanhoNivel.ToString("F1");
+                    ArmaSelecionadaImagem = item.Source;
+                    ArmaSelecionadaDescricao = item.Descricao;
+                    ArmaSelecionadaDano = "Ganho de vida: " + item.Dano.ToString("F1");
+                    GanhoNivel = "Ganho de nivel: " + item.GanhoNivel.ToString("F1");
+                    EquiparVisible = false;
+                    UsarVisible = true;
             }
             }
+
+        public async void Equipar()
+        {
+            ObservableCollection<Arma> armas = await armaService.GetArmasAsync();
+            foreach (Arma arma in armas)
+            {
+                if (arma.Descricao == ArmaSelecionadaDescricao)
+                {
+                    personagemViewModel.Equipamento = arma.Id;
+                    break;
+                }
+            }
+            //aqui ele ta só tirando as coias da tela para quando carregar denovo o itm não estar lá
+            ArmaSelecionadaImagem = null;
+            ArmaSelecionadaDescricao = null;
+            ArmaSelecionadaDano = null;
+            GanhoNivel = null;
+            EquiparVisible = false;
+
+        }
+
+        public async void Usar()
+        { //nesse contexto o armaselecionadaDano é o ganho de vida bb
+            try
+            {
+                //isso aqui é um malabarismo para transformar a string com virgula de lá em int pra ca
+                ArmaSelecionadaDano = ArmaSelecionadaDano.Replace(",", ".");
+                Debug.WriteLine(ArmaSelecionadaDano);
+                double.TryParse(ArmaSelecionadaDano, out double ArmaSelecionadaDanoDouble);
+                personagemViewModel.VidaAtual += (int)ArmaSelecionadaDanoDouble;
+                Debug.WriteLine(ArmaSelecionadaDanoDouble);
+
+                if (personagemViewModel.VidaAtual > personagemViewModel.VidaMax)
+                {
+                    personagemViewModel.VidaAtual = personagemViewModel.VidaMax;
+                }
+                //msm malabarismo
+                GanhoNivel = GanhoNivel.Replace(",", ".");
+                double.TryParse(GanhoNivel, out double GanhoNivelDouble);
+                personagemViewModel.Nivel += (int)GanhoNivelDouble;
+            }catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+
+            //malabarismo para tirar a poção da lista de possuidas
+            ObservableCollection<Pocao> pocoes = await pocaoService.GetPocoesAsync();
+            foreach (Pocao pocao in pocoes)
+            {
+                if (pocao.Descricao == ArmaSelecionadaDescricao)
+                {
+                    pocoesPossuidas.Remove(pocao.Id); 
+                    break;
+                }
+            }
+            //aqui ele ta só tirando as coias da tela para quando carregar denovo o itm não estar lá
+            ArmaSelecionadaImagem = null;
+            ArmaSelecionadaDescricao = null;
+            ArmaSelecionadaDano = null;
+            GanhoNivel = null;
+            UsarVisible = false;
+        }
+
     }
 }

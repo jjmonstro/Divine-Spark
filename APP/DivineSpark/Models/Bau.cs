@@ -3,23 +3,24 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace DivineSpark.Models
 {
     public class Bau
     {
+        [JsonPropertyName("ID")]
         public int Id { get; set; }
 
 
-        [ForeignKey("Pocao")]
+        [JsonPropertyName("pocao_ID")]
         public int? PocaoId { get; set; }
-        
 
 
-        [ForeignKey("Arma")]
+
+        [JsonPropertyName("arma_ID")]
         public int? ArmaId { get; set; }
         
-        public string Image { get; set; }
     }
 }

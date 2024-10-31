@@ -2,11 +2,13 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DivineSpark.Views.EscolhaPage"
-             xmlns:local="clr-namespace:DivineSpark.ViewModels">
+             xmlns:local="clr-namespace:DivineSpark.ViewModels"
+             Shell.NavBarIsVisible="False">
     <ContentPage.BindingContext>
         <local:PersonagemViewModel />
     </ContentPage.BindingContext>
-    <Grid Margin="0" Padding="0">
+    
+    <Grid Margin="0" Padding="0" RowSpacing="20">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
@@ -14,8 +16,8 @@
             <RowDefinition Height="2*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-                                                                                                        <!--| esse Aspect que faz ela ficar toda cagada, ele faz com que ela fique grande o suficiente para preencher a tela-->
-        <Image Grid.Row="0" Source="fundoescolha.png" HorizontalOptions="Fill" VerticalOptions="Fill" Aspect="AspectFill"/>
+
+        <Image Grid.RowSpan="2" Source="fundoinventario.png" Aspect="AspectFill"/>
 
         <Grid Grid.Row="0" ColumnSpacing="50" Margin="20">
             <Grid.ColumnDefinitions>
@@ -53,7 +55,7 @@
         </Grid>
 
 
-        <Grid Grid.Row="1" ColumnSpacing="50" RowSpacing="25" Margin="0" Padding="0">
+        <Grid Grid.Row="1" ColumnSpacing="0" RowSpacing="0" Margin="0" Padding="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
