@@ -14,4 +14,11 @@ public partial class MenuPage : ContentPage
         //o correto é new EscolhaPage
         await Navigation.PushAsync(new EscolhaPage());
     }
+
+    private async void CreditosButton_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new CreditosView());
+    }
+
+
 }

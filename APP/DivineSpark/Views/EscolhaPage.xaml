@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DivineSpark.Views.EscolhaPage"
              xmlns:local="clr-namespace:DivineSpark.ViewModels"
-             Shell.NavBarIsVisible="False">
+             Shell.NavBarIsVisible="False"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.BindingContext>
         <local:PersonagemViewModel />
     </ContentPage.BindingContext>

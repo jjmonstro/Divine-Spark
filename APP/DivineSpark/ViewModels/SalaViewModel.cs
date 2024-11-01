@@ -73,7 +73,7 @@ namespace DivineSpark.ViewModels
         public bool nivelVisible = true;
 
         [ObservableProperty]
-        public string? vidaExibir;
+        public string? vidaExibir = "";
 
  
 
@@ -95,6 +95,7 @@ namespace DivineSpark.ViewModels
         public ICommand AtacarCommand { get; set; }
         public ICommand JogarNovamenteCommand { get; set; }
         public ICommand AbrirBauCommand { get; set; }
+        public ICommand AtualizaVidaCommand { get; set; }
         public SalaViewModel(PersonagemViewModel personagemViewModel, InventarioViewModel inventarioViewModel)
         {
             //GerarSalaCommand = new Command(GerarSala);
@@ -109,9 +110,11 @@ namespace DivineSpark.ViewModels
             AtacarCommand = new Command(Atacar);
             JogarNovamenteCommand = new Command(JogarNovamente);
             AbrirBauCommand = new Command(AbrirBau);
+            AtualizaVidaCommand = new Command(AtualizaVida);
             this.personagemViewModel = personagemViewModel;
             this.inventarioViewModel = inventarioViewModel;
-            AtualizaSalaCommand.Execute(1); // Essa linha ta carrregando a primeira sala
+            AtualizaSalaCommand.Execute(1);
+            AtualizaVidaCommand.Execute(null);// Essa linha ta carrregando a primeira sala
         }
 
 
@@ -151,11 +154,12 @@ namespace DivineSpark.ViewModels
                 PodeFrente = false;
                 PodeTras = false;
             }
-            await AtualizaVida();
+             AtualizaVida();
         }
 
-        public async Task AtualizaVida()
+        public async void AtualizaVida()
         {
+            Debug.WriteLine("AtualizaVida Chamado!!!!!!!!!!!!!");
             VidaExibir = "Vida: " + Convert.ToString(personagemViewModel.VidaAtual) + "/" + Convert.ToString(personagemViewModel.VidaMax);
         }
        
@@ -232,44 +236,67 @@ namespace DivineSpark.ViewModels
             Monstro monstro = await monstroService.GetMonstroByIdAsync((int)MonstroId);
             if (vidaMonstro == 0)
             {
-                
                 vidaMonstro = monstro.VidaMax;
             }
-
 
             int idArma = personagemViewModel.Equipamento;
            // Debug.WriteLine($"personagem.equipamento: {personagemViewModel.Equipamento}     idarma: {idArma}");
             Arma arma = await armaService.GetArmaByIdAsync(idArma);
             int forcaArma = (int)arma.Dano;
-            
             int forcaPersonagem = personagemViewModel.Forca;
-            vidaMonstro = vidaMonstro - forcaArma*forcaPersonagem;
 
-            /*            Debug.WriteLine($"força da arma: {forcaArma}     froça personagem: {forcaPersonagem}    ");
-                        Debug.WriteLine($"vidaAtualMonstro: {vidaMonstro}");*/
+            //tirando vida do monstro
+            //vidaMonstro = vidaMonstro - forcaArma*forcaPersonagem;
 
-            //fazendo o personagem perder vida
-
-            personagemViewModel.vidaAtual = personagemViewModel.vidaAtual - monstro.Forca;
-            Debug.WriteLine($"monstro.Forca{monstro.Forca}---VIDA PERSONAGEM-- {personagemViewModel.vidaAtual} ---");
-            
-           if(personagemViewModel.vidaAtual <= 0)
+            //tirando vida do personagem
+            //personagemViewModel.vidaAtual = personagemViewModel.vidaAtual - monstro.Forca;
+            //Debug.WriteLine($"monstro.Forca{monstro.Forca}---VIDA PERSONAGEM-- {personagemViewModel.vidaAtual} ---");
+            int velocidade;
+            if (monstro.Agilidade>personagemViewModel.Agilidade)
             {
-                Image2 = "perdeu.png";
-                PodeEsquerda = false;
-                PodeDireita = false;
-                PodeFrente = false;
-                PodeTras = false;
-                AtacarButton = false;
-                InventarioVisible = false;
-                NivelVisible = false;
-                JogarDNV = true;
+                velocidade = 1; //monstro é mais rápido
             }
-            else if (vidaMonstro <= 0)
+            else
             {
-                FinalizarBatlha();
-                vidaMonstro = 0;
+                velocidade = 2; //personagem é mais rápido
             }
+
+            switch (velocidade)
+            {
+                case 1:
+                    
+                    personagemViewModel.vidaAtual = personagemViewModel.vidaAtual - monstro.Forca;
+                    if (personagemViewModel.vidaAtual <= 0)
+                    {
+                        Perder();
+                        return;
+                    }
+                    vidaMonstro = vidaMonstro - forcaArma * forcaPersonagem;
+                    if (vidaMonstro <= 0)
+                    {
+                        FinalizarBatlha();
+                        vidaMonstro = 0;
+                        return;
+                    }
+                    break;
+                case 2:
+                    vidaMonstro = vidaMonstro - forcaArma * forcaPersonagem;
+                    if (vidaMonstro <= 0)
+                    {
+                        FinalizarBatlha();
+                        vidaMonstro = 0;
+                        return;
+                    }
+                    personagemViewModel.vidaAtual = personagemViewModel.vidaAtual - monstro.Forca;
+                    if (personagemViewModel.vidaAtual <= 0)
+                    {
+                        Perder();
+                        return;
+                    }
+                    break;
+            }
+
+         
             
         }
 
@@ -291,6 +318,17 @@ namespace DivineSpark.ViewModels
             Image2 = null;
         }
 
-
+        private async void Perder()
+        {
+            Image2 = "perdeu.png";
+            PodeEsquerda = false;
+            PodeDireita = false;
+            PodeFrente = false;
+            PodeTras = false;
+            AtacarButton = false;
+            InventarioVisible = false;
+            NivelVisible = false;
+            JogarDNV = true;
+        }
     }
 }

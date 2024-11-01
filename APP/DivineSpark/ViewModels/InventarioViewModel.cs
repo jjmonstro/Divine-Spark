@@ -147,24 +147,30 @@ namespace DivineSpark.ViewModels
         }
 
         public async void Usar()
-        { //nesse contexto o armaselecionadaDano é o ganho de vida bb
+        { //nesse contexto o armaselecionadaDano é o ganho de vida bb <-----ATENÇÃO!!!!!!!111
             try
             {
                 //isso aqui é um malabarismo para transformar a string com virgula de lá em int pra ca
-                ArmaSelecionadaDano = ArmaSelecionadaDano.Replace(",", ".");
-                Debug.WriteLine(ArmaSelecionadaDano);
+                //ArmaSelecionadaDano = ArmaSelecionadaDano.Replace(",", ".");
+                string prefixo = "Ganho de vida: ";
+                ArmaSelecionadaDano = ArmaSelecionadaDano.Substring(prefixo.Length).Trim();
+                //Debug.WriteLine(ArmaSelecionadaDano);
                 double.TryParse(ArmaSelecionadaDano, out double ArmaSelecionadaDanoDouble);
                 personagemViewModel.VidaAtual += (int)ArmaSelecionadaDanoDouble;
-                Debug.WriteLine(ArmaSelecionadaDanoDouble);
+                //Debug.WriteLine(ArmaSelecionadaDanoDouble);
 
                 if (personagemViewModel.VidaAtual > personagemViewModel.VidaMax)
                 {
                     personagemViewModel.VidaAtual = personagemViewModel.VidaMax;
                 }
+
+
                 //msm malabarismo
-                GanhoNivel = GanhoNivel.Replace(",", ".");
-                double.TryParse(GanhoNivel, out double GanhoNivelDouble);
-                personagemViewModel.Nivel += (int)GanhoNivelDouble;
+                //GanhoNivel = GanhoNivel.Replace(",", ".");
+                string prefixo2 = "Ganho de nivel: ";
+                GanhoNivel = GanhoNivel.Substring(prefixo.Length).Trim();
+                int.TryParse(GanhoNivel, out int GanhoNivelInt);
+                personagemViewModel.Nivel += GanhoNivelInt;
             }catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);

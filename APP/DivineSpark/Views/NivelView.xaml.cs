@@ -14,7 +14,7 @@ public partial class NivelView : ContentPage
     {
         
         SalaViewModel svm = App.Services.GetService<SalaViewModel>();
-        await svm.AtualizaVida();
+        svm.AtualizaVida();
         Navigation.PopAsync();
     }
 }

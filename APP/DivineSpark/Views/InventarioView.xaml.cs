@@ -22,4 +22,9 @@ public partial class InventarioView : ContentPage
         ivm.Usar();
         await Navigation.PopAsync();
     }
+
+    private async void VoltarButton_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PopAsync();
+    }
 }

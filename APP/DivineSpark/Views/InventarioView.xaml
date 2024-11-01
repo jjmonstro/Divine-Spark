@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:DivineSpark.ViewModels"
              x:Class="DivineSpark.Views.InventarioView"
-             Shell.NavBarIsVisible="False">
+             Shell.NavBarIsVisible="False"
+             NavigationPage.HasNavigationBar="False">
 
     <!--<ContentPage.BindingContext>
         <vm:InventarioViewModel />
@@ -98,7 +99,7 @@
 
 
         <!--segunda metade da tela-->
-        <Grid Grid.Row="1" ColumnSpacing="50" RowSpacing="25" Margin="0" Padding="0">
+        <Grid Grid.Row="1" ColumnSpacing="50" RowSpacing="25" Margin="30" Padding="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -124,6 +125,13 @@
                 IsVisible="{Binding UsarVisible}"
                 Clicked="UsarButton_Clicked"
                 />
+
+            <Button x:Name="VoltarButton" 
+                Text="Voltar"
+                Grid.Row="1"
+                Grid.Column="1"
+                Clicked="VoltarButton_Clicked"
+                />  
 
         </Grid>
 

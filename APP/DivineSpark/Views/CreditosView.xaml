@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DivineSpark.Views.CreditosView"
+             Shell.NavBarIsVisible="False"
+             NavigationPage.HasNavigationBar="False">
+    
+    <Grid Margin="0" Padding="0" RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+
+        <!--img de funso da tela toda-->
+        <Image Source="fundoinventario.png"  Aspect="AspectFill" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+
+
+
+
+        <Grid Grid.Row="0" >
+            <!--metade de cima -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" Margin="0" RowSpacing="10">
+                <!--metade de cima parte esquerda-->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Frame 
+                    
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    CornerRadius="20"
+                       Padding="10"
+                       HasShadow="False"
+                       BackgroundColor="Transparent"
+                       BorderColor="Transparent"
+                       WidthRequest="120"
+                       HeightRequest="120">
+
+                    <Image
+                        
+                        Source="correx.png"
+                        Aspect="AspectFill"/>
+                </Frame>
+
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Text="Joao Pedro Correia"
+                    TextColor="White"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"/>
+
+                
+                <Frame 
+                    Grid.Column="0"
+                    Grid.Row="1"
+                       CornerRadius="20"
+                       Padding="0"
+                       HasShadow="False"
+                       BackgroundColor="Transparent"
+                       BorderColor="Transparent"
+                       WidthRequest="120"
+                       HeightRequest="120"> 
+
+                    <Image
+                        
+                        Source="correx.png"
+                        Aspect="AspectFill"/>
+                </Frame>
+                
+                <Label
+                Grid.Row="1"
+                Grid.Column="1"
+                Text="Gabriel Kenzo Takeuchi"
+                TextColor="White"
+                HorizontalOptions="Start"
+                VerticalOptions="Center"/>
+
+                
+                <Frame 
+                    Grid.Column="0"
+                    Grid.Row="2"
+                   CornerRadius="20"
+                   Padding="0"
+                   HasShadow="False"
+                   BackgroundColor="Transparent"
+                   BorderColor="Transparent"
+                   WidthRequest="120"
+                   HeightRequest="120">
+
+                    <Image
+                        
+                        Source="correx.png"
+                        Aspect="AspectFill"/>
+                </Frame>
+                <Label
+                Grid.Row="2"
+                Grid.Column="1"
+                Text="Andre Nogueira"
+                TextColor="White"
+                HorizontalOptions="Start"
+                VerticalOptions="Center"/>
+                
+            </Grid>
+
+
+            <Grid Grid.Column="1" RowSpacing="10" >
+                <!--metade de cima parte direita-->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Frame 
+    
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    CornerRadius="20"
+                       Padding="10"
+                       HasShadow="False"
+                       BackgroundColor="Transparent"
+                       BorderColor="Transparent"
+                       WidthRequest="120"
+                       HeightRequest="120">
+
+                    <Image
+        
+                        Source="correx.png"
+                        Aspect="AspectFill"/>
+                </Frame>
+
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Text="Marina Santos Paixão"
+                    TextColor="White"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"/>
+
+
+                <Frame 
+                    Grid.Column="0"
+                    Grid.Row="1"
+                       CornerRadius="20"
+                       Padding="0"
+                       HasShadow="False"
+                       BackgroundColor="Transparent"
+                       BorderColor="Transparent"
+                       WidthRequest="120"
+                       HeightRequest="120">
+
+                    <Image
+        
+                        Source="correx.png"
+                        Aspect="AspectFill"/>
+                </Frame>
+
+                <Label
+                Grid.Row="1"
+                Grid.Column="1"
+                Text="Arthur Bergamaschi Souza Sarria"
+                TextColor="White"
+                HorizontalOptions="Start"
+                VerticalOptions="Center"/>
+
+
+                <Frame 
+                    Grid.Column="0"
+                    Grid.Row="2"
+                   CornerRadius="20"
+                   Padding="0"
+                   HasShadow="False"
+                   BackgroundColor="Transparent"
+                   BorderColor="Transparent"
+                   WidthRequest="120"
+                   HeightRequest="120">
+
+                    <Image
+        
+                        Source="correx.png"
+                        Aspect="AspectFill"/>
+                </Frame>
+                <Label
+                Grid.Row="2"
+                Grid.Column="1"
+                Text="Matheus Bernardino Gomes"
+                TextColor="White"
+                HorizontalOptions="Start"
+                VerticalOptions="Center"/>
+            </Grid>
+        </Grid>
+
+
+        <Grid Grid.Row="1" ColumnSpacing="40" RowSpacing="20" Margin="30" Padding="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Button
+                Grid.Row="0"
+                Grid.Column="1"
+                Text="Voltar"
+                Clicked="Button_Clicked"/>
+
+        </Grid>
+
+    </Grid>
+</ContentPage>
