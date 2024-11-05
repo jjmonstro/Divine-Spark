@@ -9,25 +9,6 @@ CREATE TABLE Arma (
     possui INT,
 	imagem VARCHAR(50)
 );
-drop table Arma
-drop table Bau
-Drop table Sala
-
-ALTER TABLE Pocao
-ADD imagem VARCHAR(50);
-
--- Alterar a coluna "possui" do tipo BIT para INT
-ALTER TABLE Arma
-ALTER COLUMN possui INT;
-
-DELETE FROM Arma
-DELETE FROM Bau
-DELETE FROM Sala
-
-DROP TABLE Sala
-DROP TABLE Bau
-DROP TABLE Arma
-
 
 /*
     eu (correia) coloquei o dano como decimal para que
@@ -46,10 +27,6 @@ CREATE TABLE Monstro (
     agilidade INT,
 	imagem VARCHAR(50)
 );
-Drop table Sala
-DROP TABLE Bau
-DROP TABLE Pocao
-select * from Monstro
 
 CREATE TABLE Pocao (
     ID INT PRIMARY KEY,
@@ -222,9 +199,8 @@ INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALU
 INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (16, 1, null, null, null, null, 5, 'salan.png')
 INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (17, 12, null, null, null, null, 13, 'salan.png')
 
-INSERT INTO Personagem (ID,nome,vidaMax,vidaAtual,forca,agilidade,nivel,equipamento,imagem) VALUES (1, 'Lorax', 10, 10, 10, 10, 10, 1, 'p1.png')
-INSERT INTO Personagem (ID,nome,vidaMax,vidaAtual,forca,agilidade,nivel,equipamento,imagem) VALUES (2, 'Lorax2', 10, 10, 10, 10, 10, 1, 'p2.png')
-INSERT INTO Personagem (ID,nome,vidaMax,vidaAtual,forca,agilidade,nivel,equipamento,imagem) VALUES (3, 'Lorax3', 10, 10, 10, 10, 10, 1, 'p3.png')
-
-select * from Personagem
-drop table Personagem
+INSERT INTO Personagem (ID,nome,vidaMax,vidaAtual,forca,agilidade,nivel,equipamento,imagem) VALUES (1, 'Eneias', 15, 15, 5, 4, 0, 1, 'p1.png')
+INSERT INTO Personagem (ID,nome,vidaMax,vidaAtual,forca,agilidade,nivel,equipamento,imagem) VALUES (2, 'Réia', 25, 25, 2, 6, 0, 1, 'p2.png')
+INSERT INTO Personagem (ID,nome,vidaMax,vidaAtual,forca,agilidade,nivel,equipamento,imagem) VALUES (3, 'Jasão', 10, 10, 4, 8, 0, 1, 'p3.png')
+update Personagem
+set nivel=10 where ID=2

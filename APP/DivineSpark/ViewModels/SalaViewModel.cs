@@ -266,6 +266,7 @@ namespace DivineSpark.ViewModels
                 case 1:
                     
                     personagemViewModel.vidaAtual = personagemViewModel.vidaAtual - monstro.Forca;
+                    AtualizaVida();
                     if (personagemViewModel.vidaAtual <= 0)
                     {
                         Perder();
@@ -288,6 +289,7 @@ namespace DivineSpark.ViewModels
                         return;
                     }
                     personagemViewModel.vidaAtual = personagemViewModel.vidaAtual - monstro.Forca;
+                    AtualizaVida();
                     if (personagemViewModel.vidaAtual <= 0)
                     {
                         Perder();

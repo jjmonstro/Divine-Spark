@@ -77,7 +77,7 @@
 
                     <Image
                         
-                        Source="correx.png"
+                        Source="gabriel.jpg"
                         Aspect="AspectFill"/>
                 </Frame>
                 
@@ -103,13 +103,13 @@
 
                     <Image
                         
-                        Source="correx.png"
+                        Source="andre.jpg"
                         Aspect="AspectFill"/>
                 </Frame>
                 <Label
                 Grid.Row="2"
                 Grid.Column="1"
-                Text="Andre Nogueira"
+                Text="Andre Nogueira Pissuto"
                 TextColor="White"
                 HorizontalOptions="Start"
                 VerticalOptions="Center"/>
@@ -142,14 +142,14 @@
 
                     <Image
         
-                        Source="correx.png"
+                        Source="marina.jpg"
                         Aspect="AspectFill"/>
                 </Frame>
 
                 <Label
                     Grid.Row="0"
                     Grid.Column="1"
-                    Text="Marina Santos Paixão"
+                    Text="Marina Santos Paixão Ribeiro"
                     TextColor="White"
                     HorizontalOptions="Start"
                     VerticalOptions="Center"/>
@@ -168,7 +168,7 @@
 
                     <Image
         
-                        Source="correx.png"
+                        Source="arthur.jpeg"
                         Aspect="AspectFill"/>
                 </Frame>
 
@@ -194,7 +194,7 @@
 
                     <Image
         
-                        Source="correx.png"
+                        Source="bernas.jpg"
                         Aspect="AspectFill"/>
                 </Frame>
                 <Label
