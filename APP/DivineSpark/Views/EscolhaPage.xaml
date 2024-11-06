@@ -68,10 +68,10 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            
-            <Button x:Name="EscolhaButton1" Text="botão pra escolher1" Grid.Row="1" Grid.Column="1" IsVisible="False" Clicked="Escolher1Clicked"/><!--ASSIM É O N FUNCIONOU -> Command="{Binding EscolherCommand}" CommandParameter="1" IsEnabled="True"-->
-            <Button x:Name="EscolhaButton2" Text="botão pra escolher2" Grid.Row="1" Grid.Column="1" IsVisible="False" Clicked="EscolhaButton2_Clicked"/>
-            <Button x:Name="EscolhaButton3" Text="botão pra escolher3" Grid.Row="1" Grid.Column="1" IsVisible="False" Clicked="EscolhaButton3_Clicked"/>
+
+            <Button x:Name="EscolhaButton1" Grid.Row="1" Grid.Column="1" IsVisible="False" Clicked="Escolher1Clicked" ImageSource="play.png" BackgroundColor="Transparent"/><!--ASSIM É O N FUNCIONOU -> Command="{Binding EscolherCommand}" CommandParameter="1" IsEnabled="True"-->
+            <Button x:Name="EscolhaButton2" Grid.Row="1" Grid.Column="1" IsVisible="False" Clicked="EscolhaButton2_Clicked" ImageSource="play.png" BackgroundColor="Transparent"/>
+            <Button x:Name="EscolhaButton3" Grid.Row="1" Grid.Column="1" IsVisible="False" Clicked="EscolhaButton3_Clicked" ImageSource="play.png" BackgroundColor="Transparent"/>
             <Label Text="Selecione seu personagem" 
                    Grid.Column="1" 
                    Grid.Row="0" 

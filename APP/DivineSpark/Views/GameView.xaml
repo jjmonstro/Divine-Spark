@@ -91,11 +91,12 @@
                     Command="{Binding JogarNovamenteCommand}"/>
             
             <Button x:Name="InventarioButton"
-                    Text="Inventário"
                     Grid.Row="0"
                     Grid.Column="0"
                     Clicked="InventarioButtonClicked"
-                    IsVisible="{Binding InventarioVisible}"/>
+                    IsVisible="{Binding InventarioVisible}"
+                    ImageSource="inventario.png" 
+                    BackgroundColor="Transparent"/>
 
             <Button x:Name="NivelButton"
                 Text="Nivel"

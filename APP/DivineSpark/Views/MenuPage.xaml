@@ -37,9 +37,9 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-   
-            <Button x:Name="JogarButton" Text="Jogar" Grid.Row="0" Grid.Column="1" Clicked="JogarBtnClicked" IsEnabled="True"/>
-            <Button x:Name="CreditosButton" Text="Créditos" Grid.Row="1" Grid.Column="1" Clicked="CreditosButton_Clicked"/>
+
+            <Button x:Name="JogarButton" Grid.Row="0" Grid.Column="1" Clicked="JogarBtnClicked" IsEnabled="True" ImageSource="jogar.png" BackgroundColor="Transparent"/>
+            <Button x:Name="CreditosButton" Grid.Row="1" Grid.Column="1" Clicked="CreditosButton_Clicked" ImageSource="creditos.png" BackgroundColor="Transparent"/>
 
         </Grid>
 
