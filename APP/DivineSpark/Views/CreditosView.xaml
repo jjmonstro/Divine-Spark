@@ -23,6 +23,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
+      
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0" Margin="0" RowSpacing="10">
@@ -42,7 +43,7 @@
                     Grid.Column="0"
                     Grid.Row="0"
                     CornerRadius="20"
-                       Padding="10"
+                       Padding="0"
                        HasShadow="False"
                        BackgroundColor="Transparent"
                        BorderColor="Transparent"
@@ -118,7 +119,7 @@
 
 
             <Grid Grid.Column="1" RowSpacing="10" >
-                <!--metade de cima parte direita-->
+                <!--metade da direita-->
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -133,7 +134,7 @@
                     Grid.Column="0"
                     Grid.Row="0"
                     CornerRadius="20"
-                       Padding="10"
+                       Padding="0"
                        HasShadow="False"
                        BackgroundColor="Transparent"
                        BorderColor="Transparent"

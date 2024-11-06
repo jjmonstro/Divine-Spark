@@ -32,17 +32,25 @@
             <!--coissas que vão ficar em cima da imagem de fundo, tipo bau e monstro ficarão aqui -->
             <Image
                 Source="{Binding Image2}"
-                WidthRequest="210"
-                HeightRequest="350"
-                />
+                WidthRequest="410"
+                HeightRequest="450"
+                VerticalOptions="End"
+                Rotation="{Binding Image2Rotation}"
+                Scale="{Binding Image2Scale}"
+            />
 
             <Image
                 Source="bau.png"
                 IsVisible="{Binding BauVisible}"
-                Scale="0.5"/>
-
-            <Label
-                Text="{Binding VidaExibir}"
+                Scale="0.5"
+                VerticalOptions="End"
+                WidthRequest="410"
+                HeightRequest="350"/>
+            
+            
+<!--a vida não atuliza na tela quanod vc clica confiramar na tela de nivel, não consegui resolver-->
+            <Label 
+                Text="{Binding VidaExibirSala}"
                 VerticalOptions="End"
                 HorizontalOptions="Start"
                 TextColor="White"/>

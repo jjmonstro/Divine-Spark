@@ -11,6 +11,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DivineSpark.Models;
 using DivineSpark.Services;
+using Plugin.Maui.Audio;
 using Application = Microsoft.Maui.Controls.Application;
 
 namespace DivineSpark.ViewModels
@@ -45,6 +46,7 @@ namespace DivineSpark.ViewModels
         ArmaService armaService = new ArmaService();
         PocaoService pocaoService = new PocaoService();
         private readonly PersonagemViewModel personagemViewModel;
+        private readonly IAudioManager audioManager;
 
         public ObservableCollection<ItemVisual> ImagensInventario { get; set; } = new();
 
@@ -52,21 +54,44 @@ namespace DivineSpark.ViewModels
         public ICommand CarregarInventarioCommand { get; set; }
         public ICommand EquiparCommand { get; set; }
         public ICommand UsarCommand { get; set; }
-        public InventarioViewModel(PersonagemViewModel personagemViewModel) {
+        public InventarioViewModel(PersonagemViewModel personagemViewModel, IAudioManager audioManager) {
             CarregarInventarioCommand = new AsyncRelayCommand(CarregarInventario);
             EquiparCommand = new Command(Equipar);
             UsarCommand = new Command(Usar);
             Debug.WriteLine("InventsrioViewmodel inicializdo");
             SelecionarArmaCommand = new RelayCommand<ItemVisual>(item => SelecionarItem(item));
             this.personagemViewModel = personagemViewModel;
+            this.audioManager = audioManager;
+            /*tira o comentario que o inv fica lotado de tudo*/
+            armasPossuidas.Add(2);
+            armasPossuidas.Add(3);
+            armasPossuidas.Add(4);
+            armasPossuidas.Add(5);
+            armasPossuidas.Add(6);
+            armasPossuidas.Add(7);
+            armasPossuidas.Add(8);
+            armasPossuidas.Add(9);
+            armasPossuidas.Add(10);
+            armasPossuidas.Add(11);
+            armasPossuidas.Add(12);
+
+            pocoesPossuidas.Add(1);
+            pocoesPossuidas.Add(2);
+            pocoesPossuidas.Add(3);
+            pocoesPossuidas.Add(4);
+            pocoesPossuidas.Add(5);
+            pocoesPossuidas.Add(6);
+            pocoesPossuidas.Add(7);
+            pocoesPossuidas.Add(8);
+            //deixa só esse 1
             ArmasPossuidas.Add(1);
         }
         
         public async Task CarregarInventario()
         {
-            
-            //adicionar no grid
 
+            //adicionar no grid
+           
             //armas
             ImagensInventario.Clear();
             foreach (int id in ArmasPossuidas)
@@ -144,6 +169,11 @@ namespace DivineSpark.ViewModels
             GanhoNivel = null;
             EquiparVisible = false;
 
+            //tocando som equipar
+            var player = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("equipar.ogg"));
+            player.Volume = 100;
+            
+            player.Play();
         }
 
         public async void Usar()
@@ -169,8 +199,10 @@ namespace DivineSpark.ViewModels
                 //GanhoNivel = GanhoNivel.Replace(",", ".");
                 string prefixo2 = "Ganho de nivel: ";
                 GanhoNivel = GanhoNivel.Substring(prefixo.Length).Trim();
-                int.TryParse(GanhoNivel, out int GanhoNivelInt);
-                personagemViewModel.Nivel += GanhoNivelInt;
+                //Debug.WriteLine(GanhoNivel);
+                double.TryParse(GanhoNivel, out double GanhoNivelDouble);
+                //Debug.WriteLine(GanhoNivelDouble);
+                personagemViewModel.Nivel += (int)GanhoNivelDouble;
             }catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
@@ -192,6 +224,14 @@ namespace DivineSpark.ViewModels
             ArmaSelecionadaDano = null;
             GanhoNivel = null;
             UsarVisible = false;
+
+            
+
+            //tocando som de beber
+            var player = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("beber.mp3"));
+            player.Volume = 100;
+            
+            player.Play();
         }
 
     }

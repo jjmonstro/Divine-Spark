@@ -31,7 +31,7 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
-
+                
                 <!--esse aqui pega a primeria metade da tela de cima onde vão ficar os sprites dos itens possuidos-->
                 <CollectionView Grid.Row="0"
                         ItemsSource="{Binding ImagensInventario}"
@@ -41,17 +41,19 @@
                         <GridItemsLayout 
                             Orientation="Vertical"
                             Span="5"
-                            VerticalItemSpacing="5"
+                            VerticalItemSpacing="15"
                             HorizontalItemSpacing="0"/>
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <!--como essa image ta tendo uma ação ao ser clicada, acho que ela deveria ser um button, só que como eu já fiz todo o esquema como image 
-                                eu to com preguiça de transformar isso em button e dar algum b.o, então o meu amigo vai me ajudar a colocar um equivalente ao Clicked na image-->
+                                eu to com preguiça de transformar isso em button e dar algum b.o, então o meu amigo vai me ajudar a colocar um equivalente ao Clicked na image
+                            
+                                aqui da pra colocar um frame quadrado ao invés desses widht e height se for necessario-->
                             <Image Source="{Binding Source}"
                                     Aspect="AspectFill"
-                                    WidthRequest="75"
-                                    HeightRequest="75">
+                                    WidthRequest="90"
+                                    HeightRequest="90">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer 
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type vm:InventarioViewModel}}, Path=SelecionarArmaCommand}"

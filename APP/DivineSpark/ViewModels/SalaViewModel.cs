@@ -11,6 +11,7 @@ using DivineSpark.Models;
 using DivineSpark.Services;
 using DivineSpark.Views;
 using DivineSpark.ViewModels;
+using Plugin.Maui.Audio;
 
 
 
@@ -61,6 +62,12 @@ namespace DivineSpark.ViewModels
         public string image2;
 
         [ObservableProperty]
+        private int image2Rotation=0;
+
+        [ObservableProperty]
+        private double image2Scale=1;
+
+        [ObservableProperty]
         public bool jogarDNV = false;
 
         [ObservableProperty]
@@ -73,7 +80,7 @@ namespace DivineSpark.ViewModels
         public bool nivelVisible = true;
 
         [ObservableProperty]
-        public string? vidaExibir = "";
+        public string? vidaExibirSala = "";
 
  
 
@@ -85,6 +92,7 @@ namespace DivineSpark.ViewModels
         ArmaService armaService = new ArmaService();
         BauService bauService = new BauService();
         private readonly InventarioViewModel inventarioViewModel;
+        private readonly IAudioManager audioManager;
 
         public ICommand TesteCommand { get; set; }
         public ICommand AtualizaSalaCommand { get; set; }
@@ -96,7 +104,7 @@ namespace DivineSpark.ViewModels
         public ICommand JogarNovamenteCommand { get; set; }
         public ICommand AbrirBauCommand { get; set; }
         public ICommand AtualizaVidaCommand { get; set; }
-        public SalaViewModel(PersonagemViewModel personagemViewModel, InventarioViewModel inventarioViewModel)
+        public SalaViewModel(PersonagemViewModel personagemViewModel, InventarioViewModel inventarioViewModel, IAudioManager audioManager)
         {
             //GerarSalaCommand = new Command(GerarSala);
             Debug.WriteLine("SalaViewModel inicializado");
@@ -113,6 +121,7 @@ namespace DivineSpark.ViewModels
             AtualizaVidaCommand = new Command(AtualizaVida);
             this.personagemViewModel = personagemViewModel;
             this.inventarioViewModel = inventarioViewModel;
+            this.audioManager = audioManager;
             AtualizaSalaCommand.Execute(1);
             AtualizaVidaCommand.Execute(null);// Essa linha ta carrregando a primeira sala
         }
@@ -160,7 +169,7 @@ namespace DivineSpark.ViewModels
         public async void AtualizaVida()
         {
             Debug.WriteLine("AtualizaVida Chamado!!!!!!!!!!!!!");
-            VidaExibir = "Vida: " + Convert.ToString(personagemViewModel.VidaAtual) + "/" + Convert.ToString(personagemViewModel.VidaMax);
+            VidaExibirSala = "Vida: " + Convert.ToString(personagemViewModel.VidaAtual) + "/" + Convert.ToString(personagemViewModel.VidaMax);
         }
        
 
@@ -189,6 +198,10 @@ namespace DivineSpark.ViewModels
             }
 
             BauVisible = false;
+            var player = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("abrirbau.mp3"));
+            player.Volume = 100;
+           
+            player.Play();
             AtualizaBotoes(await salaService.GetSalaByIdAsync(Id));
 
         }
@@ -196,24 +209,51 @@ namespace DivineSpark.ViewModels
         public async void EsquerdaButton()
         {
             Sala sala = await salaService.GetSalaByIdAsync(Id);
+            var player = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("andar.mp3"));
+            player.Volume = 100;
+            player.SetSpeed(1.5);
+            player.Play();
             AtualizaSala((int)sala.Esquerda);
         }
 
         public async void DireitaButton()
         {
             Sala sala = await salaService.GetSalaByIdAsync(Id);
+            var player = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("andar.mp3"));
+            player.Volume = 100;
+            player.SetSpeed(1.5);
+            player.Play();
             AtualizaSala((int)sala.Direita);
         }
 
+
         public async void FrenteButton()
         {
-            Sala sala = await salaService.GetSalaByIdAsync(Id);
-            AtualizaSala((int)sala.Frente);
+            try
+            {
+                Sala sala = await salaService.GetSalaByIdAsync(Id);
+                var player = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("andar.mp3"));
+                player.Volume=100;
+                player.SetSpeed(1.5);
+                player.Play();
+                
+
+
+                AtualizaSala((int)sala.Frente);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
         }
 
         public async void TrasButton()
         {
             Sala sala = await salaService.GetSalaByIdAsync(Id);
+            var player = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("andar.mp3"));
+            player.Volume = 100;
+            player.SetSpeed(1.5);
+            player.Play();
             AtualizaSala((int)sala.Tras);
         }
 
@@ -232,6 +272,23 @@ namespace DivineSpark.ViewModels
         private int vidaMonstro;
         public async void Atacar()
         {
+            //som
+            var player = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("hit.mp3"));
+            player.Volume = 100;
+            player.Play();
+
+            //faz a img balançar
+            Image2Rotation += 7;
+            image2Scale += 0.5;
+            await Task.Delay(50);
+            Image2Rotation -= 14;
+            image2Scale -= 0.8;
+            await Task.Delay(50);
+            Image2Rotation += 7;
+            image2Scale += 0.3;
+            await Task.Delay(50);
+
+
             Debug.WriteLine("Atacou!!");
             Monstro monstro = await monstroService.GetMonstroByIdAsync((int)MonstroId);
             if (vidaMonstro == 0)
@@ -298,8 +355,8 @@ namespace DivineSpark.ViewModels
                     break;
             }
 
-         
             
+
         }
 
         public void JogarNovamente()
@@ -318,6 +375,7 @@ namespace DivineSpark.ViewModels
         {
             AtualizaBotoes(await salaService.GetSalaByIdAsync(Id));
             Image2 = null;
+            personagemViewModel.Nivel += 2;
         }
 
         private async void Perder()

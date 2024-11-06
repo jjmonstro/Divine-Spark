@@ -55,6 +55,9 @@ namespace DivineSpark.ViewModels
         [ObservableProperty]
         public string nivelExibir;
 
+        [ObservableProperty]
+        int pontosRetorno;
+
         PersonagemService personagemService = new PersonagemService();
 
 
@@ -95,6 +98,7 @@ namespace DivineSpark.ViewModels
 
         }
 
+        
         public void AumentarVida()
         {
             if ( Nivel>0 )
@@ -102,6 +106,7 @@ namespace DivineSpark.ViewModels
                 VidaMax += 5;
                 VidaAtual += 5;
                 Nivel -= 1;
+                PontosRetorno += 1;
             }
             if (VidaAtual>VidaMax)
             {
@@ -116,6 +121,7 @@ namespace DivineSpark.ViewModels
             {
                 Forca += 1;
                 Nivel -= 1;
+                PontosRetorno += 1;
             }
             AtualizaSatatus();
         }
@@ -126,36 +132,40 @@ namespace DivineSpark.ViewModels
             {
                 Agilidade += 2;
                 Nivel -= 1;
+                PontosRetorno += 1;
             }
             AtualizaSatatus();
         }
 
         public void DiminuirVida()
         {
-            if (VidaMax>5)
+            if (VidaMax>5 && PontosRetorno >0)
             {
                 VidaMax -= 5;
                 Nivel += 1;
+                PontosRetorno -= 1;
             }
             AtualizaSatatus();
         }
 
         public void DiminuirForca()
         {
-            if (Forca > 1)
+            if (Forca > 1 && PontosRetorno > 0)
             {
                 Forca -= 1;
                 Nivel += 1;
+                PontosRetorno -= 1;
             }
             AtualizaSatatus();
         }
 
         public void DiminuirAgilidade()
         {
-            if (Agilidade > 2)
+            if (Agilidade > 2 && PontosRetorno > 0)
             {
                 Agilidade -= 2;
                 Nivel += 1;
+                PontosRetorno -= 1;
             }
             AtualizaSatatus();
         }

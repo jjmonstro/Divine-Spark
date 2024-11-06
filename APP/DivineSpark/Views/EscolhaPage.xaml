@@ -32,16 +32,16 @@
                 ImageSource="p1.png"
                 Grid.Column="0"
                 BackgroundColor="Transparent" 
-                WidthRequest="210"
-                HeightRequest="350"
+                WidthRequest="310"
+                HeightRequest="550"
                 Clicked="OnButton1Clicked"/>
 
             <Button 
                 ImageSource="p2.png"
                 Grid.Column="1"
                 BackgroundColor="Transparent" 
-                WidthRequest="210"
-                HeightRequest="350"
+                WidthRequest="390"
+                HeightRequest="550"
                 Clicked="OnButton2Clicked"/>
 
 
@@ -49,8 +49,8 @@
                 ImageSource="p3.png"
                 Grid.Column="2"
                 BackgroundColor="Transparent" 
-                WidthRequest="210"
-                HeightRequest="350"
+                WidthRequest="390"
+                HeightRequest="550"
                 Clicked="OnButton3Clicked"/>
 
         </Grid>
@@ -72,7 +72,13 @@
             <Button x:Name="EscolhaButton1" Text="botão pra escolher1" Grid.Row="1" Grid.Column="1" IsVisible="False" Clicked="Escolher1Clicked"/><!--ASSIM É O N FUNCIONOU -> Command="{Binding EscolherCommand}" CommandParameter="1" IsEnabled="True"-->
             <Button x:Name="EscolhaButton2" Text="botão pra escolher2" Grid.Row="1" Grid.Column="1" IsVisible="False" Clicked="EscolhaButton2_Clicked"/>
             <Button x:Name="EscolhaButton3" Text="botão pra escolher3" Grid.Row="1" Grid.Column="1" IsVisible="False" Clicked="EscolhaButton3_Clicked"/>
-
+            <Label Text="Selecione seu personagem" 
+                   Grid.Column="1" 
+                   Grid.Row="0" 
+                   HorizontalOptions="Center"
+                   TextColor="White"
+                   FontSize="Medium"
+                   />
 
         </Grid>
 
