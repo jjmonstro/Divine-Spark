@@ -168,7 +168,7 @@ Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade,imagem) valu
 Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade,imagem) values (10, 'Gegenes', 10, 10, 5, 7, 'gegenes.png')
 Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade,imagem) values (11, 'Hidra', 10,10,6,8, 'hidra.png')
 Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade,imagem) values (12, 'Quimera', 10,10,8,7, 'quimera.png')
-Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade,imagem) values (13, 'Jupiter', 25, 25, 15, 10, 'jupiter.png')
+Insert into Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade,imagem) values (13, 'Jupiter', 50, 50, 15, 10, 'jupiter.png')
 INSERT INTO Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade,imagem) VALUES (14, 'Correx', 100, 100, 100, 100, 'correx.png')
 
 -- salad.png  vai só para diretia
@@ -180,7 +180,7 @@ INSERT INTO Monstro (ID, nome, vidaMax, vidaAtual, forca, agilidade,imagem) VALU
 -- salaf.png
 -- salan.png   não vai para lugar nenhum, só volta bb
 
-
+--esses são de um nível bem pequeno e chato mais funciona
 INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (1, null, null, null, null, 2, null, 'salaf.png')
 INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (2, null, null, 3, 9, null, 1, 'salaed.png')
 INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (3, null, null, null, null, 4, 2, 'salaf.png')
@@ -199,9 +199,47 @@ INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALU
 INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (16, 1, null, null, null, null, 5, 'salan.png')
 INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (17, 12, null, null, null, null, 13, 'salan.png')
 
-INSERT INTO Personagem (ID,nome,vidaMax,vidaAtual,forca,agilidade,nivel,equipamento,imagem) VALUES (1, 'Eneias', 15, 15, 5, 4, 0, 1, 'p1.png')
-INSERT INTO Personagem (ID,nome,vidaMax,vidaAtual,forca,agilidade,nivel,equipamento,imagem) VALUES (2, 'Réia', 25, 25, 2, 6, 0, 1, 'p2.png')
-INSERT INTO Personagem (ID,nome,vidaMax,vidaAtual,forca,agilidade,nivel,equipamento,imagem) VALUES (3, 'Jasão', 10, 10, 4, 8, 0, 1, 'p3.png')
+
+--aqui é um nivel grande mais legalsinho
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (1, null, null, null, null, 2, null, 'salaf.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (2, null, null, 11, 3, null, 1, 'salaed.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (3, null, null, 6, null, 4, 2, 'salaef.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (4, 1, null, 5, null, null, 3, 'salae.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (5, null, 12, null, null, null, 4, 'salan.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (6, null, 2, null, null, 7, 3, 'salaf.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (7, 4, null, 9, 8, null, 6, 'salaed.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (8, null, 17, null, null, null, 7, 'salan.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (9, null, null, null, 10, null, 7, 'salad.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (10, null, 3, null, null, 19, 9, 'salaf.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (11, null, null, null, 12, null, 2, 'salad.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (12, 7, null, 15, null, 13, 11, 'salaef.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (13, null, 2, null, null, 14, 12, 'salaf.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (14, null, 8, null, null, null, 13, 'salan.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (15, null, null, null, null, 16, 12, 'salaf.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (16, null, 4, null, 17, null, 15, 'salad.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (17, 11, null, null, null, 18, 16, 'salaf.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (18, null, 13, null, null, null, 17, 'salan.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (19, 7, null, 22, 20, 23, 10, 'salaedf.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (20, null, null, 25, null, 21, 19, 'salanef.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (21, null, 7, null, 32, null, 20, 'salad.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (22, null, 12, null, null, null, 19, 'salan.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (23, null, 3, null, null, 23, 19, 'salaf.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (24, 8, null, null, null, null, 23, 'salan.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (25, null, null, null, null, 26, 20, 'salaf.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (26, null, null, null, 27, null, 25, 'salad.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (27, null, null, null, null, 28, 26, 'salaf.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (28, null, 3, null, 28, null, 27, 'salad.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (29, 13, null, null, null, 30, 28, 'salaf.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (30, null, 15, null, null, 31, 29, 'salaf.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (31, null, 8, null, null, null, 30, 'salaf.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (32, 6, null, null, null, 33, 21, 'salaf.png')
+INSERT INTO Sala (ID,monstro_ID,bau_id,esquerda,direita,frente,tras,imagem) VALUES (33, null, 14, null, null, null, 32, 'salaf.png')
+
+
+
+INSERT INTO Personagem (ID,nome,vidaMax,vidaAtual,forca,agilidade,nivel,equipamento,imagem) VALUES (1, 'Eneias', 20, 20, 5, 4, 0, 1, 'p1.png')
+INSERT INTO Personagem (ID,nome,vidaMax,vidaAtual,forca,agilidade,nivel,equipamento,imagem) VALUES (2, 'Réia', 25, 25, 3, 6, 0, 1, 'p2.png')
+INSERT INTO Personagem (ID,nome,vidaMax,vidaAtual,forca,agilidade,nivel,equipamento,imagem) VALUES (3, 'Jasão', 15, 15, 4, 8, 0, 1, 'p3.png')
 
 
 delete from Personagem

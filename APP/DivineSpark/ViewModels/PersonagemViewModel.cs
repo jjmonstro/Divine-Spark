@@ -172,9 +172,9 @@ namespace DivineSpark.ViewModels
 
         public void AtualizaSatatus()
         {
-            VidaExibir = "❤️Vida Máxima❤️: " + Convert.ToString(VidaMax);
-            ForcaExibir = "⚔️Força⚔️: " + Convert.ToString(Forca);
-            AgilidadeExibir = "🏃‍Agilidade⚡: " + Convert.ToString(Agilidade);
+            VidaExibir = "Vida Máxima: " + Convert.ToString(VidaMax);
+            ForcaExibir = "Força: " + Convert.ToString(Forca);
+            AgilidadeExibir = "Agilidade: " + Convert.ToString(Agilidade);
             NivelExibir = "Pontos de nível: " + Convert.ToString(Nivel);
         }
 

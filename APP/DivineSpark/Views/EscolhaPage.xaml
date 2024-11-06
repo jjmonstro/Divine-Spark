@@ -28,8 +28,8 @@
             </Grid.ColumnDefinitions>
             <!--coissas que vão ficar em cima da imagem de fundo, tipo bau e monstro ficarão aqui -->
             
-            <Button 
-                ImageSource="p1.png"
+            <ImageButton 
+                Source="p1.png"
                 Grid.Column="0"
                 BackgroundColor="Transparent" 
                 WidthRequest="310"
@@ -69,16 +69,38 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Button x:Name="EscolhaButton1" Grid.Row="1" Grid.Column="1" IsVisible="False" Clicked="Escolher1Clicked" ImageSource="play.png" BackgroundColor="Transparent"/><!--ASSIM É O N FUNCIONOU -> Command="{Binding EscolherCommand}" CommandParameter="1" IsEnabled="True"-->
-            <Button x:Name="EscolhaButton2" Grid.Row="1" Grid.Column="1" IsVisible="False" Clicked="EscolhaButton2_Clicked" ImageSource="play.png" BackgroundColor="Transparent"/>
-            <Button x:Name="EscolhaButton3" Grid.Row="1" Grid.Column="1" IsVisible="False" Clicked="EscolhaButton3_Clicked" ImageSource="play.png" BackgroundColor="Transparent"/>
-            <Label Text="Selecione seu personagem" 
+            <Button x:Name="EscolhaButton1" Grid.Row="1" Grid.Column="1" IsVisible="False" Clicked="Escolher1Clicked" BackgroundColor="DimGray"
+                    FontFamily="GothicPixels"
+                    FontSize="Large"
+                    BorderColor="White"
+                    BorderWidth="1.3"
+                    Text="escolher"
+                    WidthRequest="300"/>
+
+            <Button x:Name="EscolhaButton2" Grid.Row="1" Grid.Column="1" IsVisible="False" Clicked="EscolhaButton2_Clicked" BackgroundColor="DimGray"
+                    FontFamily="GothicPixels"
+                    FontSize="Large"
+                    BorderColor="White"
+                    BorderWidth="1.3"
+                    Text="escolher"
+                    WidthRequest="300"/>
+
+            <Button x:Name="EscolhaButton3" Grid.Row="1" Grid.Column="1" IsVisible="False" Clicked="EscolhaButton3_Clicked" BackgroundColor="DimGray"
+                    FontFamily="GothicPixels"
+                    FontSize="Large"
+                    BorderColor="White"
+                    BorderWidth="1.3"
+                    Text="escolher"
+                    WidthRequest="300"/>
+            
+            <Label Text="selecione seu personagem" 
                    Grid.Column="1" 
                    Grid.Row="0" 
                    HorizontalOptions="Center"
                    TextColor="White"
-                   FontSize="Medium"
-                   />
+                    FontFamily="GothicPixels"
+                    FontSize="Large"
+                    />
 
         </Grid>
 

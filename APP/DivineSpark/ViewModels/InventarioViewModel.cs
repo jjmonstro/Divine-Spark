@@ -62,7 +62,7 @@ namespace DivineSpark.ViewModels
             SelecionarArmaCommand = new RelayCommand<ItemVisual>(item => SelecionarItem(item));
             this.personagemViewModel = personagemViewModel;
             this.audioManager = audioManager;
-            /*tira o comentario que o inv fica lotado de tudo*/
+            /*tira o comentario que o inv fica lotado de tudo
             armasPossuidas.Add(2);
             armasPossuidas.Add(3);
             armasPossuidas.Add(4);
@@ -82,7 +82,7 @@ namespace DivineSpark.ViewModels
             pocoesPossuidas.Add(5);
             pocoesPossuidas.Add(6);
             pocoesPossuidas.Add(7);
-            pocoesPossuidas.Add(8);
+            pocoesPossuidas.Add(8);*/
             //deixa só esse 1
             ArmasPossuidas.Add(1);
         }

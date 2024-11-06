@@ -123,7 +123,17 @@ namespace DivineSpark.ViewModels
             this.inventarioViewModel = inventarioViewModel;
             this.audioManager = audioManager;
             AtualizaSalaCommand.Execute(1);
-            AtualizaVidaCommand.Execute(null);// Essa linha ta carrregando a primeira sala
+
+            // Cria um timer que atualiza a vida a cada 1 segundo, não precisa ficar chamando atualizaVida
+            // em lugar nenhum mais porém estou com preguiça de tirar tudo
+            // (pode estar sugando processamento mas não ligo)
+            var timer = Application.Current.Dispatcher.CreateTimer();
+            timer.Interval = TimeSpan.FromSeconds(2); // Define o intervalo de 2 segundos
+            timer.Tick += (s, e) =>
+            {
+                AtualizaVida();
+            };
+            timer.Start(); // Inicia o timer
         }
 
 
@@ -169,7 +179,7 @@ namespace DivineSpark.ViewModels
         public async void AtualizaVida()
         {
             Debug.WriteLine("AtualizaVida Chamado!!!!!!!!!!!!!");
-            VidaExibirSala = "Vida: " + Convert.ToString(personagemViewModel.VidaAtual) + "/" + Convert.ToString(personagemViewModel.VidaMax);
+            VidaExibirSala = "vida: " + Convert.ToString(personagemViewModel.VidaAtual) + "/" + Convert.ToString(personagemViewModel.VidaMax);
         }
        
 
