@@ -12,7 +12,6 @@ using CommunityToolkit.Mvvm.Input;
 using DivineSpark.Models;
 using DivineSpark.Services;
 using Plugin.Maui.Audio;
-using Application = Microsoft.Maui.Controls.Application;
 
 namespace DivineSpark.ViewModels
 {
