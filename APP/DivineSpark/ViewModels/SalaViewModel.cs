@@ -6,11 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using CommunityToolkit.Mvvm.ComponentModel;
 using DivineSpark.Models;
 using DivineSpark.Services;
 using DivineSpark.Views;
 using DivineSpark.ViewModels;
+using CommunityToolkit.Mvvm;
+using CommunityToolkit.Mvvm.ComponentModel;
 using Plugin.Maui.Audio;
 
 
@@ -21,6 +22,7 @@ namespace DivineSpark.ViewModels
     {
         [ObservableProperty]
         public int id=1;
+
 
         [ObservableProperty]
         public int? monstroId;
