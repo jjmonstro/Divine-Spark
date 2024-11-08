@@ -38,6 +38,7 @@
                 Rotation="{Binding Image2Rotation}"
                 Scale="{Binding Image2Scale}"
             />
+            
 
             <Image
                 Source="bau.png"

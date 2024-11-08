@@ -20,7 +20,7 @@ namespace DivineSpark.ViewModels
     internal partial class SalaViewModel : ObservableObject, INotifyPropertyChanged
     {
         [ObservableProperty]
-        public int id;
+        public int id=1;
 
         [ObservableProperty]
         public int? monstroId;
@@ -35,13 +35,13 @@ namespace DivineSpark.ViewModels
         public int? direita;
 
         [ObservableProperty]
-        public int? frente;
+        public int? frente=2;
 
         [ObservableProperty]
         public int? tras;
 
         [ObservableProperty]
-        public string image = "salaf.jpg";
+        public string image = "salaf.png";
 
         [ObservableProperty]
         public bool podeEsquerda = false;
@@ -122,7 +122,7 @@ namespace DivineSpark.ViewModels
             this.personagemViewModel = personagemViewModel;
             this.inventarioViewModel = inventarioViewModel;
             this.audioManager = audioManager;
-            AtualizaSalaCommand.Execute(1);
+            //AtualizaSalaCommand.Execute(1);
 
             // Cria um timer que atualiza a vida a cada 1 segundo, não precisa ficar chamando atualizaVida
             // em lugar nenhum mais porém estou com preguiça de tirar tudo
@@ -385,7 +385,7 @@ namespace DivineSpark.ViewModels
         {
             AtualizaBotoes(await salaService.GetSalaByIdAsync(Id));
             Image2 = null;
-            personagemViewModel.Nivel += 2;
+            personagemViewModel.Nivel += 1;
         }
 
         private async void Perder()
